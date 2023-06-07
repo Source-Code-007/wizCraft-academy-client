@@ -2,33 +2,37 @@ import { useEffect, useState } from "react";
 import ActiveLink from "../../HelpingComponent/ActiveLink"
 import { Link } from "react-router-dom";
 import logo from '../../assets/img/magicianLogo.png'
+import UseAuth from "../../Hook/UseAuth";
 
 const Nav = () => {
-
     const [isTop, setIsTop] = useState(true);
+    const { user, authLoading } = UseAuth()
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrolledToTop = window.pageYOffset === 0;
-      setIsTop(scrolledToTop);
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrolledToTop = window.pageYOffset === 0;
+            setIsTop(scrolledToTop);
+        };
 
-    window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll);
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const menu =
         <>
 
             <li><ActiveLink to={'/'}>Home</ActiveLink></li>
-            <li><ActiveLink to={'/about'}>About</ActiveLink></li>
+            <li><ActiveLink to={'/instructor'}>Instructor</ActiveLink></li>
+            <li><ActiveLink to={'/classes'}>Classes</ActiveLink></li>
+            <li><ActiveLink to={'/dashboard'}>Dashboard</ActiveLink></li>
+
         </>
 
     return (
-        <nav className={`navbar bg-slate-900 transition duration-500 shadow ${isTop? 'bg-opacity-25' : 'bg-opacity-50'} fixed z-50`}>
+        <nav className={`navbar bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-50'} fixed z-50`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -47,7 +51,12 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
+                {
+                    user ? <>
+                        <Link><img src={user.photoURL} alt="" /></Link>
+                        <Link to={'/signout'}><button className='cmn-btn-two'>Signout</button></Link>
+                    </> : <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
+                }
             </div>
         </nav>
     );
