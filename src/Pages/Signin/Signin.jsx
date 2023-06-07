@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import UseAuth from "../../Hook/UseAuth";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Lottie from "lottie-react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import bgImg from '../../assets/img/signinBg.jpg'
@@ -13,6 +13,9 @@ const Signin = () => {
     const [isShowPass, setIsShowPass] = useState(false)
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location?.state?.from?.location
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
     const handleSigninFunc = form => {
@@ -29,6 +32,8 @@ const Signin = () => {
         signinUserWithEmailPassFunc(email, password).then(res => {
             const currUser = res.user
             setUser(currUser)
+            setSuccess('user signin by email & password!')
+            navigate(from || '/')
             reset()
         }).catch(e => {
             setAuthLoading(false)
@@ -46,21 +51,40 @@ const Signin = () => {
         })
     }
 
-    // signin User With Email Pass Func
-    const handleSigninUserWithEmailPassFunc = () => {
-
-    }
-
-
-    // handle Google Signin Func
+    // signin User With Email Func
     const handleGoogleSigninFunc = () => {
+        setError('')
+        signinUserWithEmailFunc().then(res=> {
+            setUser(res.user)
+            setSuccess('user signin by google')
 
+        }).catch(e=>{
+            setAuthLoading(false)
+            if(e.code === 'auth/account-exists-with-different-credential'){
+                setError('account exists with different credential')
+                return
+            }
+            setError(e.message)
+        })
     }
 
-    // handle Github Signin Func
+    // signin User With Github Func
     const handleGithubSigninFunc = () => {
+        setError('')
+        signinUserWithGithubFunc().then(res=> {
+            setUser(res.user)
+            setSuccess('user signin by github!')
 
+        }).catch(e=>{
+            setAuthLoading(false)
+            if(e.code === 'auth/account-exists-with-different-credential'){
+                setError('account exists with different credential')
+                return
+            }
+            setError(e.message)
+        })
     }
+
 
     return (
         <div className="bg-cover bg-center bg-slate-800 bg-blend-overlay" style={{ backgroundImage: `url(${bgImg})` }}>

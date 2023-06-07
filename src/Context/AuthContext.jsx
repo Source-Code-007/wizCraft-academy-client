@@ -11,7 +11,7 @@ const githubProvider = new GithubAuthProvider()
 
 const AuthContext = ({ children }) => {
     const [user, setUser] = useState('')
-    const [authLoading, setAuthLoading] = useState(false)
+    const [authLoading, setAuthLoading] = useState(true)
 
     // create user with email and password func
     const createUserWithEmailPassFunc = (email, password) => {

@@ -7,6 +7,7 @@ import Homepage from './Pages/Homepage/Homepage.jsx'
 import AuthContext from './Context/AuthContext'
 import Signin from './Pages/Signin/Signin'
 import Signup from './Pages/Signup/Signup'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 
 const router = createBrowserRouter([
   {
@@ -29,11 +30,15 @@ const router = createBrowserRouter([
   }
 ])
 
+const queryClient = new QueryClient();
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthContext>
-      <RouterProvider router={router}>
-      </RouterProvider>
-    </AuthContext>
+    <QueryClientProvider client={queryClient}>
+      <AuthContext>
+        <RouterProvider router={router}>
+        </RouterProvider>
+      </AuthContext>
+    </QueryClientProvider>
   </React.StrictMode>,
 )

@@ -7,6 +7,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/img/signinBg.jpg'
+import axios from 'axios';
 
 const Signup = () => {
     const { createUserWithEmailPassFunc, setAuthLoading, updateProfileFunc, signoutUserFunc } = UseAuth()
@@ -35,14 +36,20 @@ const Signup = () => {
             setError("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one digit.")
             return
         }
-        console.log(form);
 
         createUserWithEmailPassFunc(email, password)
             .then(res => {
                 // const currUser = res.user
                 updateProfileFunc(name, photo).then(() => {
                     setSuccess('user created successfully')
-                    signoutUserFunc().then(() => { }).catch(e => console.log(e.message))
+                    signoutUserFunc().then(() => {
+                        
+                        // user stored in database 
+                        const user = { name, photo, email, date: new Date(), role: 'student' }
+                        axios.post('http://localhost:3000/users', {user})
+                        .then(res=> {}).catch(e=> console.log(e.message))
+
+                    }).catch(e => console.log(e.message))
                     navigate('/signin')
                 }).catch(e => {
                     setError(e.message)

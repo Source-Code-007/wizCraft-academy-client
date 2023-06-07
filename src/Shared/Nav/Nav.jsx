@@ -3,14 +3,15 @@ import ActiveLink from "../../HelpingComponent/ActiveLink"
 import { Link } from "react-router-dom";
 import logo from '../../assets/img/magicianLogo.png'
 import UseAuth from "../../Hook/UseAuth";
+import { Rings, ThreeCircles } from "react-loader-spinner";
 
 const Nav = () => {
     const [isTop, setIsTop] = useState(true);
     const { user, authLoading, signoutUserFunc } = UseAuth()
 
     // handleSignoutFunc
-    const handleSignoutFunc = ()=>{
-        signoutUserFunc().then(()=> console.log('signout user')).catch(e=> console.log(e.message))
+    const handleSignoutFunc = () => {
+        signoutUserFunc().then(() => console.log('signout user')).catch(e => console.log(e.message))
     }
 
     useEffect(() => {
@@ -37,7 +38,7 @@ const Nav = () => {
         </>
 
     return (
-        <nav className={`navbar bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-50'} fixed z-50`}>
+        <nav className={`navbar px-8 bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-50'} fixed z-50`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -57,7 +58,18 @@ const Nav = () => {
             </div>
             <div className="navbar-end">
                 {
-                    user ? <>
+                    authLoading ? <ThreeCircles
+                    height="55"
+                    width="55"
+                    color="#02066f"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={true}
+                    ariaLabel="three-circles-rotating"
+                    outerCircleColor=""
+                    innerCircleColor=""
+                    middleCircleColor=""
+                  />: user ? <>
                         <Link><img className="h-12 w-12 rounded-full mx-2" src={user.photoURL} alt="" /></Link>
                         <button onClick={handleSignoutFunc} className='cmn-btn-two'>Signout</button>
                     </> : <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
