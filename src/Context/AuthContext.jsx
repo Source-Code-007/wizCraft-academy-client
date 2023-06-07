@@ -1,9 +1,11 @@
+/* eslint-disable react-refresh/only-export-components */
+/* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../../firebase.config";
 
 const auth = getAuth(app)
-const authContextData = createContext()
+export const authContextData = createContext()
 const googleProvider = new GoogleAuthProvider()
 const githubProvider = new GithubAuthProvider()
 
@@ -70,7 +72,7 @@ const AuthContext = ({ children }) => {
 
 
     const authContextObj = {
-        user, setUser, authLoading, setAuthLoading, createUserWithEmailAndPassword, signinUserWithEmailPassFunc, signinUserWithEmailFunc, signinUserWithGithubFunc
+        user, setUser, authLoading, setAuthLoading, createUserWithEmailPassFunc, updateProfileFunc, signinUserWithEmailPassFunc, signinUserWithEmailFunc, signinUserWithGithubFunc, signoutUserFunc
     }
     return (
         <authContextData.Provider value={authContextObj}>
