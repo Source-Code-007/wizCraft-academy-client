@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import ActiveLink from "../../HelpingComponent/ActiveLink"
+import { Link } from "react-router-dom";
 
 const Nav = () => {
 
@@ -44,7 +45,7 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn btn-outline btn-error">Button</a>
+                <Link to={'/signin'}><button className="btn btn-outline btn-error">Signin</button></Link>
             </div>
         </nav>
     );

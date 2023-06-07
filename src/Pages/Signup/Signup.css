@@ -1,4 +1,4 @@
 .my-inp{
-    @apply block w-full p-3 bg-slate-200 shadow-inner border-none rounded focus:outline-none
+    @apply block w-full p-3 bg-slate-900 shadow-inner shadow-slate-800 border-none rounded focus:outline-none
 
 }
