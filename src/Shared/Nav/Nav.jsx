@@ -6,7 +6,12 @@ import UseAuth from "../../Hook/UseAuth";
 
 const Nav = () => {
     const [isTop, setIsTop] = useState(true);
-    const { user, authLoading } = UseAuth()
+    const { user, authLoading, signoutUserFunc } = UseAuth()
+
+    // handleSignoutFunc
+    const handleSignoutFunc = ()=>{
+        signoutUserFunc().then(()=> console.log('signout user')).catch(e=> console.log(e.message))
+    }
 
     useEffect(() => {
         const handleScroll = () => {
@@ -53,8 +58,8 @@ const Nav = () => {
             <div className="navbar-end">
                 {
                     user ? <>
-                        <Link><img src={user.photoURL} alt="" /></Link>
-                        <Link to={'/signout'}><button className='cmn-btn-two'>Signout</button></Link>
+                        <Link><img className="h-12 w-12 rounded-full mx-2" src={user.photoURL} alt="" /></Link>
+                        <button onClick={handleSignoutFunc} className='cmn-btn-two'>Signout</button>
                     </> : <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
                 }
             </div>

@@ -52,21 +52,20 @@ const AuthContext = ({ children }) => {
     }
 
 
-    // user monitoring via onAuthStateChange
+
+    // user monitoring
     useEffect(() => {
-        const unsubscribe = () => {
-            onAuthStateChanged(auth, currUser => {
-                if (currUser) {
-                    setUser(currUser)
-                    setAuthLoading(false)
-                } else {
-                    setUser(currUser)
-                    setAuthLoading(false)
-                }
-            })
-        }
-        () => {
-            return unsubscribe()
+        const unsubscribe = onAuthStateChanged(auth, currUser => {
+            if (currUser) {
+                setUser(currUser)
+                setAuthLoading(false)
+            } else {
+                setUser(currUser)
+                setAuthLoading(false)
+            }
+        })
+        return () => {
+            unsubscribe()
         }
     }, [])
 

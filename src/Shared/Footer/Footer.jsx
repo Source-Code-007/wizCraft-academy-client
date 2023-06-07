@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
 import footerBg from '../../assets/img/footerBgOne.jpg'
+import logo from '../../assets/img/magicianLogo.png'
 
 const Footer = () => {
     return (
@@ -26,6 +27,7 @@ const Footer = () => {
 
             <div className='col-span-6 flex justify-center items-center'>
                 <div className='rounded-full h-64 w-64 flex flex-col justify-center items-center space-y-4 bg-[#02066f] bg-opacity-25'>
+                    <img src={logo} className="h-12 w-12 rounded-full" alt="" />
                     <h2 className='font-bold text-2xl'>WizCraft Academy</h2>
                     <div className='relative'>
                         <p className='font-bold pb-2'>Established . 2018</p>
