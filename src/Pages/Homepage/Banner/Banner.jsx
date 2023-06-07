@@ -14,7 +14,7 @@ const Banner = () => {
         <div className='h-screenf bg-cover bg-center'>
             <Swiper navigation={true} modules={[Navigation]} className="mySwiper h-screen">
 
-                <SwiperSlide className='bg-cover bg-center bg-no-repeat' style={{ backgroundImage: `url(${bannerBgOne})` }}>
+                <SwiperSlide className='bg-cover bg-center !bg-fixed' style={{ backgroundImage: `url(${bannerBgOne})` }}>
                     <div className='h-screen flex justify-center items-center text-center text-white'>
                         <div className='w-5/6 md:w-4/6 xl:w-3/6 mx-auto'>
                             <h2 className='font-bold text-3xl'>Hello from magic school!</h2>
@@ -23,7 +23,7 @@ const Banner = () => {
                     </div>
                 </SwiperSlide>
 
-                <SwiperSlide className='bg-cover bg-center bg-no-repeat' style={{ backgroundImage: `url(${bannerBgTwo})` }}>
+                <SwiperSlide className='bg-cover bg-center' style={{ backgroundImage: `url(${bannerBgTwo})` }}>
                     <div className='h-screen flex justify-center items-center text-center text-white'>
                         <div className='w-5/6 md:w-4/6 xl:w-3/6 mx-auto'>
                             <h2 className='font-bold text-3xl'>Hello from magic school!</h2>

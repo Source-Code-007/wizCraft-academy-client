@@ -1,3 +1,4 @@
+import Footer from '../Shared/Footer/Footer';
 import Nav from '../Shared/Nav/Nav';
 import { Outlet } from 'react-router-dom';
 
@@ -6,6 +7,7 @@ const LayoutOne = () => {
         <>
          <Nav></Nav>   
          <Outlet></Outlet>
+         <Footer></Footer>
         </>
     );
 };
