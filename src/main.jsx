@@ -8,6 +8,7 @@ import AuthContext from './Context/AuthContext'
 import Signin from './Pages/Signin/Signin'
 import Signup from './Pages/Signup/Signup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import DashboardLayout from './Layout/DashboardLayout'
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,15 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Signup />
       },
+    ]
+  },
+  {
+    path: '/dashboard',
+    element: <DashboardLayout/>,
+    children: [
+      {
+        
+      }
     ]
   }
 ])
