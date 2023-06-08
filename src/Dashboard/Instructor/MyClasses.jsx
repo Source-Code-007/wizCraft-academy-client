@@ -2,7 +2,6 @@ import { useQuery } from '@tanstack/react-query';
 import bgImg from '../../assets/img/signinBg.jpg'
 import { FaPen } from "react-icons/fa";
 import axios from 'axios';
-import { AnimatePresence, motion } from "framer-motion"
 import { useState } from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
 

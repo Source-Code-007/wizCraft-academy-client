@@ -9,12 +9,12 @@ import { ToastContainer, toast } from 'react-toastify';
 
 
 const AddClass = () => {
-    const { user, setAuthLoading } = UseAuth()
+    const { user } = UseAuth()
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const handleSignupFunc = form => {
+    const handleAddClassFunc = form => {
         form.instructorName = user?.displayName
         form.instructorEmail = user?.email
 
@@ -45,7 +45,7 @@ const AddClass = () => {
     return (
         <div className="bg-cover bg-center bg-slate-800 bg-blend-overlay" style={{ backgroundImage: `url(${bgImg})` }}>
             <div className='min-h-screen my-container flex items-center justify-center'>
-                <form onSubmit={handleSubmit(handleSignupFunc)} className='space-y-3 p-10 w-full bg-slate-900 bg-opacity-75 shadow rounded'>
+                <form onSubmit={handleSubmit(handleAddClassFunc)} className='space-y-3 p-10 w-full bg-slate-900 bg-opacity-75 shadow rounded'>
                     <h2 className='font-bold text-3xl text-white'>Add a class</h2>
 
                     <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
