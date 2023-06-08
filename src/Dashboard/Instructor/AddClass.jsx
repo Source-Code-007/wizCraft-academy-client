@@ -17,10 +17,9 @@ const AddClass = () => {
     const handleSignupFunc = form => {
         form.instructorName = user?.displayName
         form.instructorEmail = user?.email
-        const status = 'pending'
 
         const { instructorName, instructorEmail, className, classImg, availableSeats, price } = form
-        const myClass = { instructorName, instructorEmail, className, classImg, availableSeats, price, status }
+        const myClass = { instructorName, instructorEmail, className, classImg, availableSeats, price, status:'pending' }
 
         // store class in database
         axios.post('http://localhost:3000/instructor/add-class', { myClass })

@@ -12,6 +12,7 @@ import DashboardLayout from './Layout/DashboardLayout'
 import AddClass from './Dashboard/Instructor/AddClass'
 import DashboardHome from './Dashboard/DashboardHome'
 import MyClasses from './Dashboard/Instructor/MyClasses'
+import ManageClasses from './Dashboard/Admin/ManageClasses/ManageClasses'
 
 
 
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: '/instructor/my-classes',
         element: <MyClasses></MyClasses>
+      },
+      {
+        path: '/admin/manage-classes',
+        element: <ManageClasses></ManageClasses>
       }
     ]
   }

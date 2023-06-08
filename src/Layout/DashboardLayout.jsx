@@ -3,7 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import UseRole from "../Hook/UseRole";
 import { ThreeCircles } from "react-loader-spinner";
 import logo from '../../src/assets/img/magicianLogo.png'
-import { FaChalkboardTeacher, FaCreativeCommons, FaSchool, FaUniversity, FaUserGraduate } from "react-icons/fa";
+import { FaChalkboardTeacher, FaHome, FaRegWindowRestore, FaSearchPlus, FaUniversity, FaUserCog, FaUserGraduate, FaUserPlus, FaUserSecret, FaUsers, FaVenus } from "react-icons/fa";
 import UseAuth from "../Hook/UseAuth";
 import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import DashboardActiveLink from "../HelpingComponent/DashboardActiveLink";
@@ -66,13 +66,13 @@ const DashboardLayout = () => {
                                 <li><DashboardActiveLink to={'/my-selected-class'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-enrolled-class'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
-                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}>Instructor Home</DashboardActiveLink></li>
-                                    <li><DashboardActiveLink to={'/instructor/add-class'}>Add Class</DashboardActiveLink></li>
-                                    <li><DashboardActiveLink to={'/instructor/my-classes'}>My Classes</DashboardActiveLink></li></Slide>
+                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> </DashboardActiveLink></li>
+                                    <li><DashboardActiveLink to={'/instructor/add-class'}> <FaSearchPlus></FaSearchPlus> Add Class</DashboardActiveLink></li>
+                                    <li><DashboardActiveLink to={'/instructor/my-classes'}> <FaRegWindowRestore></FaRegWindowRestore> My Classes</DashboardActiveLink></li></Slide>
                                 : isRole === 'admin' ?
-                                    <Slide> <li><DashboardActiveLink to={'/dashboard-admin'}>Admin Home</DashboardActiveLink></li>
-                                        <li><DashboardActiveLink to={'/admin/manage-classes'}>Manage Classes</DashboardActiveLink></li>
-                                        <li><DashboardActiveLink to={'/admin/manage-users'}>Manage Users</DashboardActiveLink></li> </Slide> : ''
+                                    <Slide> <li><DashboardActiveLink to={'/dashboard-admin'}> <FaUserSecret></FaUserSecret> Admin Home</DashboardActiveLink></li>
+                                        <li><DashboardActiveLink to={'/admin/manage-classes'}> <FaVenus></FaVenus> Manage Classes</DashboardActiveLink></li>
+                                        <li><DashboardActiveLink to={'/admin/manage-users'}> <FaUsers></FaUsers> Manage Users</DashboardActiveLink></li> </Slide> : ''
                     }
 
 
