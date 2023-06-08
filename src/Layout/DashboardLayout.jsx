@@ -2,11 +2,11 @@
 import { Link, Outlet } from "react-router-dom";
 import UseRole from "../Hook/UseRole";
 import { ThreeCircles } from "react-loader-spinner";
-import ActiveLink from "../HelpingComponent/ActiveLink";
 import logo from '../../src/assets/img/magicianLogo.png'
 import { FaChalkboardTeacher, FaCreativeCommons, FaSchool, FaUniversity, FaUserGraduate } from "react-icons/fa";
 import UseAuth from "../Hook/UseAuth";
 import { Fade, JackInTheBox, Roll, Rotate, Slide, Zoom } from "react-awesome-reveal";
+import DashboardActiveLink from "../HelpingComponent/DashboardActiveLink";
 
 const DashboardLayout = () => {
     const [isRole, isRoleLoading] = UseRole()
@@ -32,7 +32,7 @@ const DashboardLayout = () => {
     return (
         <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-center bg-[#02066f] h-screen">
+            <div className="drawer-content">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-2" className="cmn-btn-one absolute top-2 right-2 drawer-button lg:hidden">Open drawer</label>
                 <Outlet></Outlet>
@@ -42,14 +42,14 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-[#063a92] text-slate-200 font-bold space-y-3 text-lg">
                     {/* Sidebar content here */}
-                    <li>
-                        <Zoom>
+                    <Zoom>
+                        <li>
                             <Link to={'/'} className="flex gap-2 justify-center">
-                                <img src={logo} className="w-16 h-auto" />
+                                <img src={logo} className="w-12 h-auto" />
                                 <h2>WizCraft Academy</h2>
                             </Link>
-                        </Zoom>
-                    </li>
+                        </li>
+                    </Zoom>
 
                     <div className="space-y-2 !my-5 flex gap-5 justify-center items-center">
                         <JackInTheBox>
@@ -62,17 +62,17 @@ const DashboardLayout = () => {
                     </div>
                     {
                         isRole === 'student' ?
-                            <Slide><li><ActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</ActiveLink></li>
-                                <li><ActiveLink to={'/my-selected-class'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</ActiveLink></li>
-                                <li><ActiveLink to={'/my-enrolled-class'}> <FaUniversity></FaUniversity> Enrolled classes</ActiveLink></li></Slide>
+                            <Slide><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
+                                <li><DashboardActiveLink to={'/my-selected-class'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
+                                <li><DashboardActiveLink to={'/my-enrolled-class'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
-                                <Slide><li><ActiveLink to={'/dashboard/instructor'}>Instructor Home</ActiveLink></li>
-                                    <li><ActiveLink to={'/instructor/add-class'}>Add Class</ActiveLink></li>
-                                    <li><ActiveLink to={'/instructor/my-classes'}>My Classes</ActiveLink></li></Slide>
-                                : isRole === 'admin' ? 
-                                    <Slide> <li><ActiveLink to={'/dashboard-admin'}>Admin Home</ActiveLink></li>
-                                        <li><ActiveLink to={'/admin/manage-classes'}>Manage Classes</ActiveLink></li>
-                                        <li><ActiveLink to={'/admin/manage-users'}>Manage Users</ActiveLink></li> </Slide> : ''
+                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}>Instructor Home</DashboardActiveLink></li>
+                                    <li><DashboardActiveLink to={'/instructor/add-class'}>Add Class</DashboardActiveLink></li>
+                                    <li><DashboardActiveLink to={'/instructor/my-classes'}>My Classes</DashboardActiveLink></li></Slide>
+                                : isRole === 'admin' ?
+                                    <Slide> <li><DashboardActiveLink to={'/dashboard-admin'}>Admin Home</DashboardActiveLink></li>
+                                        <li><DashboardActiveLink to={'/admin/manage-classes'}>Manage Classes</DashboardActiveLink></li>
+                                        <li><DashboardActiveLink to={'/admin/manage-users'}>Manage Users</DashboardActiveLink></li> </Slide> : ''
                     }
 
 

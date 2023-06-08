@@ -9,6 +9,11 @@ import Signin from './Pages/Signin/Signin'
 import Signup from './Pages/Signup/Signup'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import DashboardLayout from './Layout/DashboardLayout'
+import AddClass from './Dashboard/Instructor/AddClass'
+import DashboardHome from './Dashboard/DashboardHome'
+import UseRole from './Hook/UseRole'
+
+
 
 const router = createBrowserRouter([
   {
@@ -30,11 +35,16 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: '/dashboard',
+    path: '/',
     element: <DashboardLayout/>,
     children: [
       {
-        
+        path: '/dashboard',
+        element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: '/instructor/add-class',
+        element: <AddClass></AddClass>
       }
     ]
   }
