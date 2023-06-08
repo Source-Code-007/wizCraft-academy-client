@@ -11,7 +11,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import DashboardLayout from './Layout/DashboardLayout'
 import AddClass from './Dashboard/Instructor/AddClass'
 import DashboardHome from './Dashboard/DashboardHome'
-import UseRole from './Hook/UseRole'
+import MyClasses from './Dashboard/Instructor/MyClasses'
 
 
 
@@ -45,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: '/instructor/add-class',
         element: <AddClass></AddClass>
+      },
+      {
+        path: '/instructor/my-classes',
+        element: <MyClasses></MyClasses>
       }
     ]
   }

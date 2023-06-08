@@ -1,24 +1,14 @@
-// - **Add a Class:** This page will have a form with the following fields:
-//         - Class name
-//         - Class Image
-//         - Instructor name (read-only) **(use the displayName value of logged in user/instructor)**
-//         - Instructor email (read-only) **(use the email value of logged in user/instructor)**
-//         - Available seats
-//         - Price
-//         - Add button
-//         - When creating a class on the database, the value of the status field will be pending.
-
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import UseAuth from "../../Hook/UseAuth";
-import Lottie from "lottie-react";
-import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/img/signinBg.jpg'
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 const AddClass = () => {
-
     const { user, setAuthLoading } = UseAuth()
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
@@ -27,10 +17,28 @@ const AddClass = () => {
     const handleSignupFunc = form => {
         form.instructorName = user?.displayName
         form.instructorEmail = user?.email
+        const status = 'pending'
 
-        const {instructorName, instructorEmail, className, classImg, availableSeats, price} = form
-        console.log(form);
+        const { instructorName, instructorEmail, className, classImg, availableSeats, price } = form
+        const myClass = { instructorName, instructorEmail, className, classImg, availableSeats, price, status }
 
+        // store class in database
+        axios.post('http://localhost:3000/instructor/add-class', { myClass })
+            .then(res => {
+                if(res.data.insertedId){
+                    toast.success('Class added successfully!', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
+                }
+            })
+            .catch(e => setError(e.message))
 
     };
 
@@ -61,7 +69,7 @@ const AddClass = () => {
 
                     <div>
                         <label htmlFor="classImg" className="block mb-2 text-sm font-medium text-slate-400 dark:text-white">Class image</label>
-                        <input type='text' id='classImg' className='my-inp' {...register("classImg", { required: true })} placeholder='Your class Image here' />
+                        <input type='url' id='classImg' className='my-inp' {...register("classImg", { required: true })} placeholder='Your class Image here' />
                         {errors.classImg && <p className='text-red-500'>This field is required</p>}
                     </div>
 
@@ -86,6 +94,18 @@ const AddClass = () => {
                 </form>
 
             </div>
+            <ToastContainer
+                position="top-right"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 };

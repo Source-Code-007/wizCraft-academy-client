@@ -5,7 +5,7 @@ import { ThreeCircles } from "react-loader-spinner";
 import logo from '../../src/assets/img/magicianLogo.png'
 import { FaChalkboardTeacher, FaCreativeCommons, FaSchool, FaUniversity, FaUserGraduate } from "react-icons/fa";
 import UseAuth from "../Hook/UseAuth";
-import { Fade, JackInTheBox, Roll, Rotate, Slide, Zoom } from "react-awesome-reveal";
+import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import DashboardActiveLink from "../HelpingComponent/DashboardActiveLink";
 
 const DashboardLayout = () => {
@@ -30,7 +30,7 @@ const DashboardLayout = () => {
     }
 
     return (
-        <div className="drawer lg:drawer-open">
+        <div className="drawer lg:drawer-open overflow-x-hidden">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content">
                 {/* Page content here */}
