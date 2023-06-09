@@ -77,7 +77,7 @@ const ManageClasses = () => {
                                         <Slide direction='right' duration={2000}>
                                             <div className="card-actions justify-end">
                                                 <ManageClassesBtn id={_id} refetch={refetch} status={status}></ManageClassesBtn>
-                                                <button className={`cmn-btn-two ${(status ==='approved' || feedback) && '!bg-[#063a92]'}`} disabled={status ==='approved' || feedback} onClick={() => {window.my_modal_1.showModal(); setCurrentClassId(_id)}}>Feedback</button>
+                                                <button className={`cmn-btn-two ${(status ==='approved' || feedback) && '!bg-[#063a92] !text-slate-300 !bg-opacity-50'}`} disabled={status ==='approved' || feedback} onClick={() => {window.my_modal_1.showModal(); setCurrentClassId(_id)}}>Feedback</button>
                                             </div>
                                         </Slide>
                                     </div>
