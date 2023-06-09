@@ -17,6 +17,7 @@ import ManageUsers from './Dashboard/Admin/ManageUsers/ManageUsers'
 import AdminRoute from './PrivateRoute/AdminRoute'
 import InstructorRoute from './PrivateRoute/InstructorRoute'
 import InstructorsPage from './Pages/InstructorsPage/InstructorsPage'
+import ClassesPage from './Pages/ClassesPage/ClassesPage'
 
 
 
@@ -41,8 +42,13 @@ const router = createBrowserRouter([
         path: '/instructors',
         element: <InstructorsPage />
       },
+      {
+        path: '/classes',
+        element: <ClassesPage />
+      },
     ]
   },
+
   {
     path: '/',
     element: <DashboardLayout/>,
@@ -69,6 +75,7 @@ const router = createBrowserRouter([
       }
     ]
   }
+  
 ])
 
 const queryClient = new QueryClient();

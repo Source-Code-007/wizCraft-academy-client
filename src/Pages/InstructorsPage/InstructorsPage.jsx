@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import UseAxiosSecure from "../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
@@ -29,7 +30,7 @@ const InstructorsPage = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-20 grid grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 grid grid-cols-3 gap-5'>
                         {
                             instructors.map((instructor, ind) => {
                                 const { _id, name, photo, email, date } = instructor

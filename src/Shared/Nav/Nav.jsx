@@ -3,7 +3,7 @@ import ActiveLink from "../../HelpingComponent/ActiveLink"
 import { Link } from "react-router-dom";
 import logo from '../../assets/img/magicianLogo.png'
 import UseAuth from "../../Hook/UseAuth";
-import { Rings, ThreeCircles } from "react-loader-spinner";
+import { ThreeCircles } from "react-loader-spinner";
 
 const Nav = () => {
     const [isTop, setIsTop] = useState(true);
@@ -16,7 +16,7 @@ const Nav = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            const scrolledToTop = window.pageYOffset === 0;
+            const scrolledToTop = window.pageYOffset < 200;
             setIsTop(scrolledToTop);
         };
 
@@ -38,7 +38,7 @@ const Nav = () => {
         </>
 
     return (
-        <nav className={`navbar px-8 bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-50'} fixed z-50`}>
+        <nav className={`navbar px-8 bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-70'} fixed z-50`}>
             <div className="navbar-start">
                 <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost lg:hidden">
