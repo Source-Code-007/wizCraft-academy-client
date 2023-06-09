@@ -3,6 +3,7 @@
 import { createContext, useEffect, useState } from "react";
 import { GithubAuthProvider, GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import { app } from "../../firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app)
 export const authContextData = createContext()
@@ -59,7 +60,11 @@ const AuthContext = ({ children }) => {
             if (currUser) {
                 setUser(currUser)
                 setAuthLoading(false)
+                // JWT create
+                axios.post('http://localhost:3000/create-jwt', {email: currUser.email})
+                .then(res=> localStorage.setItem('jwt-token', res.data)).catch(e=> console.log(e.message))
             } else {
+                localStorage.removeItem('jwt-token')
                 setUser(currUser)
                 setAuthLoading(false)
             }

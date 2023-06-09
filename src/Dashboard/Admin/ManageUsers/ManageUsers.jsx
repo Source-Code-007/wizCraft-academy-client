@@ -10,7 +10,7 @@ const ManageUsers = () => {
     const { data: allUsers, refetch, error, isLoading } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/users')
+            const res = await axios.get('http://localhost:3000/all-users')
             return res.data
         }
     })
@@ -55,7 +55,7 @@ const ManageUsers = () => {
                     /> </div>
                     : <div className='my-container py-20 grid grid-cols-3 gap-5'>
                         {
-                            allUsers.filter(user => user.role !== 'admin').map((user, ind) => {
+                            allUsers?.filter(user => user.role !== 'admin').map((user, ind) => {
                                 const { _id, name, photo, role, email } = user
 
                                 return <div key={ind} className="card card-compact cmn-gradient-one shadow-xl text-slate-200 overflow-hidden">

@@ -25,7 +25,7 @@ const ManageClasses = () => {
         if(!feedback){
             return
         }
-        axios.put(`http://localhost:3000/add-feedback/${currentClassId}`, {feedback})
+        axios.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, {feedback})
         .then(res=> {
             if(res.data.acknowledged){
                 toast.success('Feedback added!', {
