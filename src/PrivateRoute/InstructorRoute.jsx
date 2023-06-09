@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
-import { ThreeCircles } from "react-loader-spinner";
-import UseRole from "../Hook/UseRole";
+/* eslint-disable no-unused-vars */
 import { Navigate, useLocation } from "react-router-dom";
 import UseAuth from "../Hook/UseAuth";
+import UseRole from "../Hook/UseRole";
+import { ThreeCircles } from "react-loader-spinner";
 
-const AdminRoute = ({children}) => {
-    const {signoutUserFunc} = UseAuth()
+
+const InstructorRoute = ({children}) => {
+    const {signoutUserFunc, setAuthLoading} = UseAuth()
     const [ isRole, isRoleLoading ] = UseRole()
     const location = useLocation()
 
@@ -26,11 +28,11 @@ const AdminRoute = ({children}) => {
         </div>
     }
 
-    if(isRole!=='admin'){
-        signoutUserFunc().then(()=>{}).catch(e=> console.log(e.message))
+    if(isRole!=='instructor'){
+        signoutUserFunc().then(()=>{}).catch(e=> {setAuthLoading(false)})
        return <Navigate to={'/signin'} state={{from: location}}></Navigate>
     }
     return children
 };
 
-export default AdminRoute;
+export default InstructorRoute;

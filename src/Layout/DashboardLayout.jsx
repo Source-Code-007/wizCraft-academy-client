@@ -60,14 +60,14 @@ const DashboardLayout = () => {
                             </div>
                         </JackInTheBox>
                     </div>
-                    
+
                     {
                         isRole === 'student' ?
                             <Slide><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-selected-class'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-enrolled-class'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
-                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> </DashboardActiveLink></li>
+                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/add-class'}> <FaSearchPlus></FaSearchPlus> Add Class</DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/my-classes'}> <FaRegWindowRestore></FaRegWindowRestore> My Classes</DashboardActiveLink></li></Slide>
                                 : isRole === 'admin' ?
