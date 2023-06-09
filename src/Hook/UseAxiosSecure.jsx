@@ -7,6 +7,7 @@ import UseAuth from "./UseAuth";
 const axiosSecure = axios.create({
     baseURL: import.meta.env.VITE_API_URL
 })
+
 const UseAxiosSecure = () => {
     const navigate = useNavigate()
     const { signoutUserFunc, setAutLoading } = UseAuth()
@@ -30,9 +31,8 @@ const UseAxiosSecure = () => {
                 return Promise.reject(err)
             }
         )
+
     }, [navigate, signoutUserFunc, setAutLoading])
-
-
 
 
     return { axiosSecure }

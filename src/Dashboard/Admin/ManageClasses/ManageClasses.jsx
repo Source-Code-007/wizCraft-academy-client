@@ -21,26 +21,26 @@ const ManageClasses = () => {
     })
 
     // add feedback
-    const addFeedbackFunc = (feedback)=>{
-        if(!feedback){
+    const addFeedbackFunc = (feedback) => {
+        if (!feedback) {
             return
         }
-        axios.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, {feedback})
-        .then(res=> {
-            if(res.data.acknowledged){
-                toast.success('Feedback added!', {
-                    position: "top-right",
-                    autoClose: 1500,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
-                    theme: "light",
-                });
-                refetch()
-            }
-        }).catch(e=> console.log(e.message))
+        axios.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, { feedback })
+            .then(res => {
+                if (res.data.acknowledged) {
+                    toast.success('Feedback added!', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    refetch()
+                }
+            }).catch(e => console.log(e.message))
     }
 
 
@@ -77,7 +77,7 @@ const ManageClasses = () => {
                                         <Slide direction='right' duration={2000}>
                                             <div className="card-actions justify-end">
                                                 <ManageClassesBtn id={_id} refetch={refetch} status={status}></ManageClassesBtn>
-                                                <button className={`cmn-btn-two ${(status ==='approved' || feedback) && '!bg-[#063a92] !text-slate-300 !bg-opacity-50'}`} disabled={status ==='approved' || feedback} onClick={() => {window.my_modal_1.showModal(); setCurrentClassId(_id)}}>Feedback</button>
+                                                <button className={`cmn-btn-two ${feedback && '!bg-[#063a92] !text-slate-300 !bg-opacity-50'}`} disabled={feedback} onClick={() => { window.my_modal_1.showModal(); setCurrentClassId(_id) }}>Feedback</button>
                                             </div>
                                         </Slide>
                                     </div>
@@ -98,7 +98,7 @@ const ManageClasses = () => {
                 pauseOnHover
                 theme="light"
             />
-    <FeedbackModal addFeedbackFunc={addFeedbackFunc}></FeedbackModal>
+            <FeedbackModal addFeedbackFunc={addFeedbackFunc}></FeedbackModal>
         </div>
     );
 };

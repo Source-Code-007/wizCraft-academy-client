@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-refresh/only-export-components */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect, useState } from "react";
@@ -58,11 +59,19 @@ const AuthContext = ({ children }) => {
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, currUser => {
             if (currUser) {
-                setUser(currUser)
                 setAuthLoading(false)
                 // JWT create
                 axios.post('http://localhost:3000/create-jwt', {email: currUser.email})
-                .then(res=> localStorage.setItem('jwt-token', res.data)).catch(e=> console.log(e.message))
+                .then((res) => {
+                    localStorage.setItem('jwt-token', res.data);
+                    setUser(currUser);
+                    setAuthLoading(false);
+                  })
+                  .catch((e) => {
+                    console.log(e.message);
+                    setUser(currUser);
+                    setAuthLoading(false);
+                  });
             } else {
                 localStorage.removeItem('jwt-token')
                 setUser(currUser)
