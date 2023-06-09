@@ -31,7 +31,7 @@ const Nav = () => {
         <>
 
             <li><ActiveLink to={'/'}>Home</ActiveLink></li>
-            <li><ActiveLink to={'/instructor'}>Instructor</ActiveLink></li>
+            <li><ActiveLink to={'/instructors'}>Instructors</ActiveLink></li>
             <li><ActiveLink to={'/classes'}>Classes</ActiveLink></li>
             {user?.email && <li><ActiveLink to={'/dashboard'}>Dashboard</ActiveLink></li>}
 

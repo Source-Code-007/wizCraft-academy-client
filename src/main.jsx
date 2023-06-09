@@ -16,6 +16,7 @@ import ManageClasses from './Dashboard/Admin/ManageClasses/ManageClasses'
 import ManageUsers from './Dashboard/Admin/ManageUsers/ManageUsers'
 import AdminRoute from './PrivateRoute/AdminRoute'
 import InstructorRoute from './PrivateRoute/InstructorRoute'
+import InstructorsPage from './Pages/InstructorsPage/InstructorsPage'
 
 
 
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <Signup />
+      },
+      {
+        path: '/instructors',
+        element: <InstructorsPage />
       },
     ]
   },
