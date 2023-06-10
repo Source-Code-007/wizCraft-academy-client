@@ -78,7 +78,7 @@ const MyClasses = () => {
                                                     </td>
                                                     <td className='text-center'> {totalEnrolledStudent ? totalEnrolledStudent : 0} </td>
                                                     <td className='text-center'>{status}</td>
-                                                    <td className='text-center'> {feedback ? feedback : 'NA'} </td>
+                                                    <td className='text-center'> {feedback ? feedback : 'N/A'} </td>
                                                     <th className='text-end'>  <button className="cmn-btn-one"> <FaPen></FaPen></button>  </th>
                                                 </tr>
                                             })

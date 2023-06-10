@@ -35,12 +35,18 @@ const InstructorsPage = () => {
                             instructors.map((instructor, ind) => {
                                 const { _id, name, photo, email, date } = instructor
 
-                                return <div key={ind} className="card card-compact cmn-gradient-one shadow-xl text-slate-200 overflow-hidden">
-                                    <figure className='shadow'><img src={photo} alt={name} className='h-80 w-full rounded-t' /></figure>
-                                    <div className="card-body font-semibold text-lg relative !pt-10">
-                                        <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{name}</h2>
+                                return <div key={ind} className="card card-compact rounded-b-none bg-slate-800 bg-opacity-25 shadow-xl text-slate-200 overflow-hidden">
+                                    <div className="h-40 relative">
+                                        <figure className='shadow'><img src={photo} alt={name} className='h-40 w-40 my-8 rounded-xl absolute -bottom-24 z-10' /></figure>
+                                    </div>
+                                    <div className="card-body font-semibold text-lg relative !pt-24 rounded-t-xl cmn-gradient-one">
+                                        <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2 z-20">{name}</h2>
                                         <p>Email: {email}</p>
-                                        <p>Join date: {new Date(date).toLocaleDateString()}</p>
+                                        <p>Joining date: {new Date(date).toLocaleDateString()}</p>
+                                        <p>Total Class: pending</p>
+                                        <p>Classes: pending, pending, pending</p>
+                                        <p>Total student: pending</p>
+                                        <button className="cmn-btn-two">See classes</button>
                                     </div>
                                 </div>
                             })

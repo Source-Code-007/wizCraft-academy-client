@@ -12,10 +12,10 @@ import { useState } from 'react';
 const ManageClasses = () => {
     const [currentClassId, setCurrentClassId] = useState(null)
 
-    const { isLoading, data: instructorClasses, refetch, error } = useQuery({
-        queryKey: ['instructorClasses'],
+    const { isLoading, data: allClasses, refetch, error } = useQuery({
+        queryKey: ['allClasses'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/instructor/my-classes')
+            const res = await axios.get('http://localhost:3000/all-classes')
             return res.data
         }
     })
@@ -62,8 +62,8 @@ const ManageClasses = () => {
                     /> </div>
                     : <div className='my-container py-20 grid grid-cols-3 gap-5'>
                         {
-                            instructorClasses.map((instructorClass, ind) => {
-                                const { _id, instructorName, instructorEmail, className, classImg, status, availableSeats, feedback, price } = instructorClass
+                            allClasses.map((classP, ind) => {
+                                const { _id, instructorName, instructorEmail, className, classImg, status, availableSeats, feedback, price } = classP
 
                                 return <div key={ind} className="card card-compact cmn-gradient-one shadow-xl text-slate-200 overflow-hidden">
                                     <figure><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
@@ -77,7 +77,7 @@ const ManageClasses = () => {
                                         <Slide direction='right' duration={2000}>
                                             <div className="card-actions justify-end">
                                                 <ManageClassesBtn id={_id} refetch={refetch} status={status}></ManageClassesBtn>
-                                                <button className={`cmn-btn-two ${feedback && '!bg-[#063a92] !text-slate-300 !bg-opacity-50'}`} disabled={feedback} onClick={() => { window.my_modal_1.showModal(); setCurrentClassId(_id) }}>Feedback</button>
+                                                <button className={`cmn-btn-two ${(feedback || status==='approved' || status==='pending') && '!bg-[#063a92] !text-slate-300 !bg-opacity-50'}`} disabled={feedback || status==='approved' || status==='pending'} onClick={() => { window.my_modal_1.showModal(); setCurrentClassId(_id) }}>Feedback</button>
                                             </div>
                                         </Slide>
                                     </div>
