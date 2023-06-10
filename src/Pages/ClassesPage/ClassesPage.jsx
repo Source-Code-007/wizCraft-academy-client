@@ -29,15 +29,10 @@ const ClassesPage = () => {
     }, [axiosSecure])
 
     // all selected classes
-    // useEffect(() => {
-        // axiosSecure('/selected-classes')
-        //     .then(res => { setSelectedClasses(res.data); setSelectedClassesIsLoading(false) })
-        //     .catch(e => console.log(e.message))
-    // }, [axiosSecure])
     const {data:selectedClasses, isLoading:selectedClassesIsLoading, refetch, error} = useQuery({
         queryKey: ['selectedClasses'],
         queryFn: async()=>{
-            const result = await axiosSecure('/selected-classes')
+            const result = await axiosSecure('/all-selected-classes')
             return result.data
         }
     })
@@ -82,12 +77,11 @@ const ClassesPage = () => {
             .catch(e => console.log(e.message))
     }
 
-    // already selected class
+    // already selected class for disable button
     const isAlreadySelectedClass = (id) => {
         const selectedClass = selectedClasses.find(classP => classP.classId === id).selectBy.includes(user?.email)
         return selectedClass
     }
-
 
 
     return (
@@ -118,7 +112,7 @@ const ClassesPage = () => {
                                         <p>Instructor name: {instructorName}</p>
                                         <p>Available seats: {availableSeats}</p>
                                         <p>price: {price}</p>
-                                        <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)) ? '!bg-[#063a92] !text-slate-300' : ''}`} onClick={() => handleSelectClassFunc(classP)}> <FaHeart></FaHeart> Select</button>
+                                        <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)) ? '!bg-[#063a92] !text-slate-300' : ''}`} onClick={() => handleSelectClassFunc(classP)}> <FaHeart></FaHeart> {isAlreadySelectedClass(_id)? 'Already selected' : 'select'}</button>
                                     </div>
                                 </div>
                             })
