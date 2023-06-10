@@ -18,6 +18,8 @@ import AdminRoute from './PrivateRoute/AdminRoute'
 import InstructorRoute from './PrivateRoute/InstructorRoute'
 import InstructorsPage from './Pages/InstructorsPage/InstructorsPage'
 import ClassesPage from './Pages/ClassesPage/ClassesPage'
+import SelectedClasses from './Dashboard/Student/SelectedClasses/SelectedClasses'
+import EnrolledClasses from './Dashboard/Student/EnrolledClasses/EnrolledClasses'
 
 
 
@@ -56,6 +58,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <DashboardHome></DashboardHome>
+      },
+      {
+        path: '/my-selected-classes',
+        element: <SelectedClasses></SelectedClasses>
+      },
+      {
+        path: '/my-enrolled-classes',
+        element: <EnrolledClasses></EnrolledClasses>
       },
       {
         path: '/instructor/add-class',

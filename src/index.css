@@ -28,7 +28,7 @@ input[type=number] {
 }
 
 .cmn-btn-two{
-    @apply bg-[#02066f] hover:bg-[#063a92] px-6 py-3 rounded text-white font-bold
+    @apply bg-[#02066f] hover:bg-[#063a92] shadow px-6 py-3 rounded text-white font-bold
 }
 
 .cmn-gradient-one{
