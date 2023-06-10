@@ -72,28 +72,44 @@ const CheckoutForm = ({ paymentItem }) => {
 
         setError('')
 
-        // store payment data in database
+
+        // store payment data in database > stored in enrolled classes > remove from selected classes > reduce available seat from particular class 
         const { id, amount } = paymentIntent
-        const paymentInfo = {selectedClassId: paymentItem?._id, classId: paymentItem?.classId, trxId: id, amount, date: new Date(), user: user?.displayName, email: user?.email }
+        const paymentInfo = { selectedClassId: paymentItem?._id, classId: paymentItem?.classId, trxId: id, amount, date: new Date(), user: user?.displayName, email: user?.email }
+
         axiosSecure.post('/store-payment-info', paymentInfo)
           .then(res => {
             if (res.data.acknowledged) {
-              console.log('Payment succeeded!');
-              toast.success('Payment success!', {
-                position: "top-right",
-                autoClose: 1500,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-              });
-            }
-          })
-          .catch(e => console.log(e.message))
 
-        console.log(id, amount);
+              axiosSecure.post('/enrolled-classes', { enrolledClass: paymentItem, email: user?.email })
+                .then(res => {
+                  if (res.data.acknowledged) {
+
+
+                    axiosSecure.delete(`/delete-specific-user-selected-classes?email=${user?.email}&&id=${paymentItem.classId}`)
+                      .then(res => {
+                        if (res.data.acknowledged) {
+
+                          toast.success('Payment success!', {
+                            position: "top-right",
+                            autoClose: 1500,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                          });
+
+                        }
+                      }).catch(e => setError(e.message))
+
+
+                  }
+                }).catch(e > setError(e.message))
+
+            }
+          }).catch(e => setError(e.message))
 
       }
     })
