@@ -20,6 +20,7 @@ import InstructorsPage from './Pages/InstructorsPage/InstructorsPage'
 import ClassesPage from './Pages/ClassesPage/ClassesPage'
 import SelectedClasses from './Dashboard/Student/SelectedClasses/SelectedClasses'
 import EnrolledClasses from './Dashboard/Student/EnrolledClasses/EnrolledClasses'
+import PaymentPage from './Dashboard/Student/PaymentPage/PaymentPage'
 
 
 
@@ -68,6 +69,11 @@ const router = createBrowserRouter([
         element: <EnrolledClasses></EnrolledClasses>
       },
       {
+        path: '/make-payment',
+        element: <PaymentPage></PaymentPage>
+      },
+
+      {
         path: '/instructor/add-class',
         element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
       },
@@ -75,6 +81,7 @@ const router = createBrowserRouter([
         path: '/instructor/my-classes',
         element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
       },
+      
       {
         path: '/admin/manage-classes',
         element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>

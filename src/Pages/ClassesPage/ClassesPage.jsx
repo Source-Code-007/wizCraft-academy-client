@@ -29,9 +29,9 @@ const ClassesPage = () => {
     }, [axiosSecure])
 
     // all selected classes
-    const {data:selectedClasses, isLoading:selectedClassesIsLoading, refetch, error} = useQuery({
+    const { data: selectedClasses, isLoading: selectedClassesIsLoading, refetch, error } = useQuery({
         queryKey: ['selectedClasses'],
-        queryFn: async()=>{
+        queryFn: async () => {
             const result = await axiosSecure('/all-selected-classes')
             return result.data
         }
@@ -82,8 +82,6 @@ const ClassesPage = () => {
         const selectedClass = selectedClasses.find(classP => classP.classId === id).selectBy.includes(user?.email)
         return selectedClass
     }
-
-
     return (
         <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
             {
@@ -112,7 +110,13 @@ const ClassesPage = () => {
                                         <p>Instructor name: {instructorName}</p>
                                         <p>Available seats: {availableSeats}</p>
                                         <p>price: {price}</p>
-                                        <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || isAlreadySelectedClass(_id)) ? '!bg-[#063a92] !text-slate-300' : ''}`} onClick={() => handleSelectClassFunc(classP)}> <FaHeart></FaHeart> {isAlreadySelectedClass(_id)? 'Already selected' : 'select'}</button>
+
+                                        <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))}
+                                            className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))) ? '!bg-[#063a92] !text-slate-300' : ''}`}
+                                            onClick={() => handleSelectClassFunc(classP)}>
+                                            <FaHeart></FaHeart> {(selectedClasses?.length && isAlreadySelectedClass(_id)) ? 'Already selected' : 'select'}
+                                        </button>
+
                                     </div>
                                 </div>
                             })

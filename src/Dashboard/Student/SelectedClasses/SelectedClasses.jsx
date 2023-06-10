@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import UseAuth from "../../../Hook/UseAuth";
@@ -7,10 +8,12 @@ import { FaDollarSign, FaTrash } from "react-icons/fa";
 import bgImg from '../../../assets/img/signinBg.jpg'
 import { Slide } from "react-awesome-reveal";
 import Swal from "sweetalert2";
+import {  useNavigate } from "react-router-dom";
 
 const SelectedClasses = () => {
     const { user } = UseAuth()
     const { axiosSecure } = UseAxiosSecure()
+    const navigate = useNavigate()
 
     const { data: selectedClasses, isLoading: selectedClassesIsLoading, error, refetch } = useQuery({
         queryKey: ['specificSelectedClasses'],
@@ -29,7 +32,7 @@ const SelectedClasses = () => {
                 text: "You never revert this!",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#02066f',
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
@@ -53,6 +56,13 @@ const SelectedClasses = () => {
                         .catch(e => console.log(e.message))
                 }
             })
+    }
+
+
+    // handlePayBtnFunc
+    const handlePayBtnFunc= (classP)=>{
+        navigate('/make-payment') 
+        localStorage.setItem('payment-info', JSON.stringify(classP))
     }
 
     return (
@@ -90,7 +100,7 @@ const SelectedClasses = () => {
                                                 <button onClick={() => handleDeleteSelectedClass(classId)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaTrash></FaTrash> Delete</button>
                                             </Slide>
                                             <Slide direction='left' duration={1500}>
-                                                <button className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaDollarSign></FaDollarSign> Pay</button>
+                                                <button onClick={()=>handlePayBtnFunc(classP)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaDollarSign></FaDollarSign> Pay</button>
                                             </Slide>
                                         </div>
 

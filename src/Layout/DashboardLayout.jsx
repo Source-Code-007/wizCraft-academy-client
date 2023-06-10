@@ -5,7 +5,7 @@ import { ThreeCircles } from "react-loader-spinner";
 import logo from '../../src/assets/img/magicianLogo.png'
 import { FaChalkboardTeacher, FaHome, FaRegWindowRestore, FaSearchPlus, FaUniversity, FaUserCog, FaUserGraduate, FaUserPlus, FaUserSecret, FaUsers, FaVenus } from "react-icons/fa";
 import UseAuth from "../Hook/UseAuth";
-import { JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
+import { Flip, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import DashboardActiveLink from "../HelpingComponent/DashboardActiveLink";
 
 const DashboardLayout = () => {
@@ -42,15 +42,12 @@ const DashboardLayout = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-[#063a92] text-slate-200 font-bold space-y-3 text-lg">
                     {/* Sidebar content here */}
-                    <Zoom>
                         <li>
                             <Link to={'/'} className="flex gap-2 justify-center">
                                 <img src={logo} className="w-12 h-auto" />
                                 <h2>WizCraft Academy</h2>
                             </Link>
                         </li>
-                    </Zoom>
-
                     <div className="space-y-2 !my-5 flex gap-5 justify-center items-center">
                         <JackInTheBox>
                             <img src={user?.photoURL} className="h-14 w-14 rounded-full" alt="" />
@@ -63,15 +60,15 @@ const DashboardLayout = () => {
 
                     {
                         isRole === 'student' ?
-                            <Slide><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
+                            <Slide left cascade><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-selected-classes'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-enrolled-classes'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
-                                <Slide><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
+                                <Slide left cascade><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/add-class'}> <FaSearchPlus></FaSearchPlus> Add Class</DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/my-classes'}> <FaRegWindowRestore></FaRegWindowRestore> My Classes</DashboardActiveLink></li></Slide>
                                 : isRole === 'admin' ?
-                                    <Slide> <li><DashboardActiveLink to={'/dashboard-admin'}> <FaUserSecret></FaUserSecret> Admin Home</DashboardActiveLink></li>
+                                    <Slide left cascade> <li><DashboardActiveLink to={'/dashboard-admin'}> <FaUserSecret></FaUserSecret> Admin Home</DashboardActiveLink></li>
                                         <li><DashboardActiveLink to={'/admin/manage-classes'}> <FaVenus></FaVenus> Manage Classes</DashboardActiveLink></li>
                                         <li><DashboardActiveLink to={'/admin/manage-users'}> <FaUsers></FaUsers> Manage Users</DashboardActiveLink></li> </Slide> : ''
                     }
