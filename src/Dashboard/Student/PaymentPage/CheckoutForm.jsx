@@ -83,23 +83,30 @@ const CheckoutForm = ({ paymentItem }) => {
 
               axiosSecure.post('/enrolled-classes', { enrolledClass: paymentItem, email: user?.email })
                 .then(res => {
-                  if (res.data.acknowledged) {
+                  if (res.data?.acknowledged) {
 
 
                     axiosSecure.delete(`/delete-specific-user-selected-classes?email=${user?.email}&&id=${paymentItem.classId}`)
                       .then(res => {
-                        if (res.data.acknowledged) {
+                        if (res.data?.acknowledged) {
 
-                          toast.success('Payment success!', {
-                            position: "top-right",
-                            autoClose: 1500,
-                            hideProgressBar: false,
-                            closeOnClick: true,
-                            pauseOnHover: true,
-                            draggable: true,
-                            progress: undefined,
-                            theme: "light",
-                          });
+                          axiosSecure.patch('/reduce-available-seat-from-class', {classId:paymentItem?.classId})
+                          .then(res=> {
+
+                            if(res.data?.acknowledged){
+                              toast.success('Payment success!', {
+                                position: "top-right",
+                                autoClose: 1500,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                              });  
+                            }
+
+                          }).catch(e=> setError(e.message))
 
                         }
                       }).catch(e => setError(e.message))
