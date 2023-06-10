@@ -1,10 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import UseAuth from "../../../Hook/UseAuth";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import { ThreeCircles } from "react-loader-spinner";
-import { FaDollarSign,  FaTrash } from "react-icons/fa";
+import { FaDollarSign, FaTrash } from "react-icons/fa";
 import bgImg from '../../../assets/img/signinBg.jpg'
+import { Slide } from "react-awesome-reveal";
+import Swal from "sweetalert2";
 
 const SelectedClasses = () => {
     const { user } = UseAuth()
@@ -18,6 +20,40 @@ const SelectedClasses = () => {
         },
         enabled: !!user?.email
     })
+
+    // handle delete class func
+    const handleDeleteSelectedClass = (classId) => {
+        
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You never revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, Delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    axiosSecure.delete(`/delete-specific-user-selected-classes?email=${user?.email}&&id=${classId}`)
+                        .then(res => {
+                            if (res.data.acknowledged) {
+                                toast.success('Class deleted!', {
+                                    position: "top-right",
+                                    autoClose: 1500,
+                                    hideProgressBar: false,
+                                    closeOnClick: true,
+                                    pauseOnHover: true,
+                                    draggable: true,
+                                    progress: undefined,
+                                    theme: "light",
+                                });
+                                refetch()
+                            }
+                        })
+                        .catch(e => console.log(e.message))
+                }
+            })
+    }
 
     return (
         <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
@@ -35,10 +71,11 @@ const SelectedClasses = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
+                    : !selectedClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no class added!</h2></div>
                     : <div className='my-container py-28 grid grid-cols-3 gap-5'>
                         {
                             selectedClasses.map((classP, ind) => {
-                                const { _id, classImg, className, instructorName, availableSeats, price } = classP
+                                const { _id, classImg, className, classId, instructorName, availableSeats, price } = classP
 
                                 return <div key={ind} className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
                                     <figure className='shadow'><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
@@ -47,8 +84,16 @@ const SelectedClasses = () => {
                                         <p>Instructor name: {instructorName}</p>
                                         <p>Available seats: {availableSeats}</p>
                                         <p>price: {price}</p>
-                                        <button className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaTrash></FaTrash> Delete</button>
-                                        <button className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaDollarSign></FaDollarSign> Pay</button>
+
+                                        <div className="card-actions justify-end">
+                                            <Slide direction='right' duration={1500}>
+                                                <button onClick={() => handleDeleteSelectedClass(classId)} className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaTrash></FaTrash> Delete</button>
+                                            </Slide>
+                                            <Slide direction='left' duration={1500}>
+                                                <button className={`cmn-btn-two w-fit flex items-center gap-3 my-3 }`}> <FaDollarSign></FaDollarSign> Pay</button>
+                                            </Slide>
+                                        </div>
+
                                     </div>
                                 </div>
                             })
