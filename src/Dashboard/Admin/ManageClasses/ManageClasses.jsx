@@ -60,7 +60,7 @@ const ManageClasses = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-20 grid grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                         {
                             allClasses.map((classP, ind) => {
                                 const { _id, instructorName, instructorEmail, className, classImg, status, availableSeats, feedback, price } = classP

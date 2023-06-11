@@ -32,22 +32,23 @@ const DashboardLayout = () => {
     return (
         <div className="drawer lg:drawer-open overflow-x-hidden">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content">
+            <div className="drawer-content lg:ml-80">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-2" className="cmn-btn-one absolute top-2 right-2 drawer-button lg:hidden">Open drawer</label>
                 <Outlet></Outlet>
 
             </div>
-            <div className="drawer-side">
+            <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-                <ul className="menu p-4 w-80 h-full bg-[#063a92] text-slate-200 font-bold space-y-3 text-lg">
+
+                <ul className="menu p-4 w-80 h-full bg-[#063a92] text-slate-200 font-bold space-y-3 text-lg fixed">
                     {/* Sidebar content here */}
-                        <li>
-                            <Link to={'/'} className="flex gap-2 justify-center">
-                                <img src={logo} className="w-12 h-auto" />
-                                <h2>WizCraft Academy</h2>
-                            </Link>
-                        </li>
+                    <li>
+                        <Link to={'/'} className="flex gap-2 justify-center">
+                            <img src={logo} className="w-12 h-auto" />
+                            <h2>WizCraft Academy</h2>
+                        </Link>
+                    </li>
                     <div className="space-y-2 !my-5 flex gap-5 justify-center items-center">
                         <JackInTheBox>
                             <img src={user?.photoURL} className="h-14 w-14 rounded-full" alt="" />

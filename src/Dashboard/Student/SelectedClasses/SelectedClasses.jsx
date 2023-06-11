@@ -82,7 +82,7 @@ const SelectedClasses = () => {
                         middleCircleColor=""
                     /> </div>
                     : !selectedClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no selected classes!</h2></div>
-                    : <div className='my-container py-28 grid grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                         {
                             selectedClasses.map((classP, ind) => {
                                 const { _id, classImg, className, classId, instructorName, availableSeats, price } = classP

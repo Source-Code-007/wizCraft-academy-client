@@ -37,10 +37,10 @@ const EnrolledClasses = () => {
                         middleCircleColor=""
                     /> </div>
                     : !enrolledClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no enrolled classes!</h2></div>
-                    : <div className='my-container py-28 grid grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                         {
                             enrolledClasses.map((classP, ind) => {
-                                const { _id, classImg, className, classId, instructorName, availableSeats, price } = classP
+                                const { _id, classImg, className, date, instructorName, availableSeats, price } = classP
 
                                 return <div key={ind} className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
                                     <figure className='shadow'><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
@@ -48,6 +48,7 @@ const EnrolledClasses = () => {
                                         <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
                                         <p>Instructor name: {instructorName}</p>
                                         <p>price: {price}</p>
+                                        <p>Enrolled date: {new Date(date).toLocaleDateString()}</p>
                                     </div>
                                 </div>
                             })

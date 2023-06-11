@@ -79,9 +79,14 @@ const ClassesPage = () => {
 
     // already selected class for disable button
     const isAlreadySelectedClass = (id) => {
-        const selectedClass = selectedClasses.find(classP => classP.classId === id).selectBy.includes(user?.email)
-        return selectedClass
+        const selectedClass = selectedClasses.find(classP => classP.classId === id)
+        let isSelectedClass
+        if(selectedClass){
+            isSelectedClass =  selectedClass.selectBy.includes(user?.email)
+        }
+        return isSelectedClass
     }
+
     return (
         <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
             {

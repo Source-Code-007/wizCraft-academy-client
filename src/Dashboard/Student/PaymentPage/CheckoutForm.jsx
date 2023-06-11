@@ -57,6 +57,7 @@ const CheckoutForm = ({ paymentItem }) => {
       confirmButtonText: 'Yes, make payment!'
     }).then(async (result) => {
       if (result.isConfirmed) {
+        setIsDisable(true)
 
         const { error: confirmPaymentErr, paymentIntent } = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
@@ -90,15 +91,18 @@ const CheckoutForm = ({ paymentItem }) => {
                 .then(res => {
                   if (res.data?.acknowledged) {
 
+                    // Delete selected classes
                     axiosSecure.delete(`/delete-my-selected-classes?email=${user?.email}&&id=${paymentItem.classId}`)
                       .then(res => {
                         if (res.data?.acknowledged) {
 
+                          //  reduce available seat...
                           axiosSecure.patch('/reduce-available-seat-from-class', { classId: paymentItem?.classId })
                             .then(res => {
 
                               if (res.data?.acknowledged) {
                                 setIsDisable(false)
+                                // TODO: not working because of asynchronous behavior !paymentInfo condition
                                 toast.success('Payment success!', {
                                   position: "top-right",
                                   autoClose: 1500,
@@ -109,6 +113,7 @@ const CheckoutForm = ({ paymentItem }) => {
                                   progress: undefined,
                                   theme: "light",
                                 });
+                                localStorage.removeItem('payment-info')
                               }
 
                             }).catch(e => setError(e.message))
@@ -122,22 +127,25 @@ const CheckoutForm = ({ paymentItem }) => {
 
             }
           }).catch(e => setError(e.message))
-        setIsDisable(false)
       }
     })
 
+    setIsDisable(false)
   }
 
 
 
-
-
+  // if no payment info then , nothing to payment
+  const paymentInfo = localStorage.getItem('payment-info')
+  if (!paymentInfo) {
+    return <div className="h-screen  flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no payment info right now!</h2></div>
+  }
 
 
   // card component style
   const inputStyle = {
     iconColor: '#c4f0ff',
-    color: '#000',
+    color: '#fff',
     fontWeight: '500',
     fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
     fontSize: '16px',
@@ -161,7 +169,7 @@ const CheckoutForm = ({ paymentItem }) => {
       }}></CardElement>
 
       {error && <p className='text-red-500 my-2'>{error}</p>}
-      <button disabled={!stripe || !elements || !paymentItem?.price || isDisable} type='submit' className='test cmn-btn-two my-4'>Payment</button>
+      <button disabled={!stripe || !elements || !paymentItem?.price || isDisable} type='submit' className={`test cmn-btn-two my-4 ${isDisable && 'bg-[#063a92] text-slate-300'}`}>Payment</button>
 
 
       <ToastContainer
