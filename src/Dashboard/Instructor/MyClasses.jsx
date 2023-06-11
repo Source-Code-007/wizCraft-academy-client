@@ -5,10 +5,14 @@ import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 import UseAuth from '../../Hook/UseAuth';
 import UseAxiosSecure from '../../Hook/UseAxiosSecure';
+import UpdateClassModal from './UpdateClassModal';
+import { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const MyClasses = () => {
     const { user } = UseAuth()
-    const {axiosSecure} = UseAxiosSecure()
+    const { axiosSecure } = UseAxiosSecure()
+    const [forUpdateClass, setForUpdateClass] = useState('')
 
 
     const { isLoading: myClassesLoading, data: myClasses, refetch, } = useQuery({
@@ -21,6 +25,27 @@ const MyClasses = () => {
     })
 
 
+    // updateClassFunc
+    const updateClassFunc = (e) => {
+        const form = e.target
+        const updatedClass = { className: form.className.value, price: parseInt(form.price.value), classImg: form.classImg.value }
+        axiosSecure.patch(`/instructor/update-class/${forUpdateClass._id}`, { updatedClass })
+            .then(res => {
+                if (res.data.modifiedCount) {
+                    toast.success('class updated!', {
+                        position: "top-right",
+                        autoClose: 1500,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                    });
+                    refetch()
+                }
+            }).catch(e => console.log(e.message))
+    }
 
 
     return (
@@ -40,9 +65,9 @@ const MyClasses = () => {
                         middleCircleColor=""
                     />
                 </div>
-                    : !myClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no class added!</h2></div>
+                    : !myClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no class added!</h2></div>
                         : <div className='my-container py-20 px-10 xl:px-5'>
-                            <div className="!overflow-x-auto xl:w-full bg-slate-900 bg-opacity-50 text-slate-200">
+                            <div className="!overflow-x-auto xl:w-full bg-slate-900 bg-opacity-75 text-slate-200 rounded shadow-inner shadow-slate-600 py-8">
                                 <table className="table">
                                     {/* head */}
                                     <thead>
@@ -60,7 +85,7 @@ const MyClasses = () => {
                                         {/* row 1 */}
                                         {
                                             myClasses.map((myClass, ind) => {
-                                                const { className, classImg, totalEnrolledStudent, feedback, price, status } = myClass
+                                                const { _id, className, classImg, enrolledStudent, feedback, price, status } = myClass
                                                 return <tr key={ind}>
                                                     <td>{ind + 1}</td>
                                                     <td>
@@ -76,10 +101,11 @@ const MyClasses = () => {
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td className='text-center'> {totalEnrolledStudent ? totalEnrolledStudent : 0} </td>
+                                                    <td className='text-center'> {enrolledStudent} </td>
                                                     <td className='text-center'>{status}</td>
                                                     <td className='text-center'> {feedback ? feedback : 'N/A'} </td>
-                                                    <th className='text-end'>  <button className="cmn-btn-one"> <FaPen></FaPen></button>  </th>
+                                                    <th className='text-end'>  <button className="cmn-btn-one" onClick={() => { window.my_modal_1.showModal(); setForUpdateClass(myClass) }}><FaPen></FaPen></button>  </th>
+
                                                 </tr>
                                             })
                                         }
@@ -90,6 +116,19 @@ const MyClasses = () => {
                         </div>
             }
 
+            <UpdateClassModal updateClassFunc={updateClassFunc} forUpdateClass={forUpdateClass}></UpdateClassModal>
+            <ToastContainer
+                position="top-right"
+                autoClose={1500}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+            />
         </div>
     );
 

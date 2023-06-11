@@ -6,6 +6,7 @@ import Lottie from "lottie-react";
 import { FaEye, FaEyeSlash, FaGithub, FaGoogle } from "react-icons/fa";
 import bgImg from '../../assets/img/signinBg.jpg'
 import signinLottie from '../../../public/lottieAnimation/signin-lottie.json'
+import axios from "axios";
 
 const Signin = () => {
     const { signinUserWithEmailPassFunc, setAuthLoading, setUser, signinUserWithEmailFunc, signinUserWithGithubFunc } = UseAuth()
@@ -54,13 +55,21 @@ const Signin = () => {
     // signin User With Email Func
     const handleGoogleSigninFunc = () => {
         setError('')
-        signinUserWithEmailFunc().then(res=> {
-            setUser(res.user)
-            setSuccess('user signin by google')
+        signinUserWithEmailFunc().then(res => {
+            const currUser = res.user
 
-        }).catch(e=>{
+            // user stored in database 
+            const user = { name: currUser.displayName, photo: currUser.photoURL, email: currUser.email, date: new Date(), role: 'student' }
+            axios.post('http://localhost:3000/users', { user })
+                .then(res => {
+                    setUser(currUser)
+                    setSuccess('user signin by google')
+                    navigate(from || '/')
+                }).catch(e => console.log(e.message))
+
+        }).catch(e => {
             setAuthLoading(false)
-            if(e.code === 'auth/account-exists-with-different-credential'){
+            if (e.code === 'auth/account-exists-with-different-credential') {
                 setError('account exists with different credential')
                 return
             }
@@ -71,13 +80,21 @@ const Signin = () => {
     // signin User With Github Func
     const handleGithubSigninFunc = () => {
         setError('')
-        signinUserWithGithubFunc().then(res=> {
-            setUser(res.user)
-            setSuccess('user signin by github!')
+        signinUserWithGithubFunc().then(res => {
 
-        }).catch(e=>{
+            const currUser = res.user
+            // user stored in database 
+            const user = { name: currUser.displayName, photo: currUser.photoURL, email: currUser.email, date: new Date(), role: 'student' }
+            axios.post('http://localhost:3000/users', { user })
+                .then(res => {
+                    setUser(currUser)
+                    setSuccess('user signin by github!')
+                    navigate(from || '/')
+                }).catch(e => console.log(e.message))
+
+        }).catch(e => {
             setAuthLoading(false)
-            if(e.code === 'auth/account-exists-with-different-credential'){
+            if (e.code === 'auth/account-exists-with-different-credential') {
                 setError('account exists with different credential')
                 return
             }

@@ -12,7 +12,7 @@ const InstructorRoute = ({children}) => {
     const [ isRole, isRoleLoading ] = UseRole()
     const location = useLocation()
 
-    if (authLoading || (user?.email && isRoleLoading)) {
+    if (authLoading || isRoleLoading) {
         return <div className="h-screen flex items-center justify-center bg-[#063a92]">
             <ThreeCircles
                 height="100"

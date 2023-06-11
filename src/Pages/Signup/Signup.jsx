@@ -2,7 +2,6 @@ import { useForm } from 'react-hook-form';
 import signupLottie from '../../../public/lottieAnimation/signup-lottie.json'
 import UseAuth from "../../Hook/UseAuth";
 import Lottie from "lottie-react";
-import './Signup.css'
 import { FaEye, FaEyeSlash } from "react-icons/fa"
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -41,16 +40,17 @@ const Signup = () => {
             .then(res => {
                 // const currUser = res.user
                 updateProfileFunc(name, photo).then(() => {
-                    setSuccess('user created successfully')
                     signoutUserFunc().then(() => {
-                        
+
                         // user stored in database 
                         const user = { name, photo, email, date: new Date(), role: 'student' }
-                        axios.post('http://localhost:3000/users', {user})
-                        .then(res=> {}).catch(e=> console.log(e.message))
+                        axios.post('http://localhost:3000/users', { user })
+                            .then(res => {
+                                setSuccess('user created successfully')
+                                navigate('/signin')
+                            }).catch(e => console.log(e.message))
 
                     }).catch(e => console.log(e.message))
-                    navigate('/signin')
                 }).catch(e => {
                     setError(e.message)
                     setAuthLoading(false)

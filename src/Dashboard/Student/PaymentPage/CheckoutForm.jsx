@@ -98,8 +98,8 @@ const CheckoutForm = ({ paymentItem }) => {
                       .then(res => {
                         if (res.data?.acknowledged) {
 
-                          //  reduce available seat...
-                          axiosSecure.patch('/reduce-available-seat-from-class', { classId: paymentItem?.classId })
+                          //  reduce available seat and increase enrolled student from class and instructor...
+                          axiosSecure.patch('/reduce-available-seat-and-increase-enrolled-student', { classId: paymentItem?.classId, instructorEmail:paymentItem?.instructorEmail })
                             .then(res => {
 
                               if (res.data?.acknowledged) {

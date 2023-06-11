@@ -7,10 +7,10 @@ const FeedbackModal = ({addFeedbackFunc}) => {
         <div>
             {/* Open the modal using ID.showModal() method */}
             <dialog id="my_modal_1" className="modal">
-                <form method="dialog" className="modal-box max-w-2xl">
+                <form method="dialog" className="modal-box max-w-2xl bg-slate-800 text-slate-100 bg-opacity-90">
 
                     <div>
-                        <label htmlFor="feedback" className="block mb-2 text-sm font-medium text-slate-800 dark:text-white">Feedback</label>
+                        <label htmlFor="feedback" className="block mb-2 text-sm font-medium text-slate-100 dark:text-white">Feedback</label>
                         <textarea ref={feedbackRef} required className="my-inp w-full h-60" name="feedback" id="feedback" placeholder="Your feedback here"></textarea>
                     </div>
 

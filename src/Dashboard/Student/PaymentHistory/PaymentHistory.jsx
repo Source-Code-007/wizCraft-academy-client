@@ -38,7 +38,7 @@ const PaymentHistory = () => {
                     : !paymentInfo?.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no payment history!</h2></div>
                         : <div className="overflow-x-auto w-5/6 mx-auto py-16">
 
-                            <div className="bg-slate-700 bg-opacity-50 text-slate-200 rounded shadow-inner shadow-slate-600 pb-14">
+                            <div className="bg-slate-900 bg-opacity-75 text-slate-200 rounded shadow-inner shadow-slate-600 pb-14">
                                 <h2 className="font-bold text-3xl p-5 text-center">Total Payment: ${paymentInfo.reduce((sum, pInfo)=> sum+pInfo.amount, 0)/100} </h2>
                                 <table className="table w-full">
                                     {/* head */}

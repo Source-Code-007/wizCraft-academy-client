@@ -28,6 +28,10 @@ input[type=number] {
 }
 
 
+.my-inp{
+  @apply block w-full p-3 bg-slate-900 text-slate-200 placeholder:text-slate-600 shadow-inner shadow-slate-800 border-none rounded focus:outline-none
+}
+
 .cmn-btn-one{
     @apply px-5 py-3 rounded text-white font-bold;
     background-image: radial-gradient(circle at 28% 93%, rgba(2, 2, 2,0.04) 0%, rgba(2, 2, 2,0.04) 50%,rgba(223, 223, 223,0.04) 50%, rgba(223, 223, 223,0.04) 100%),radial-gradient(circle at 13% 75%, rgba(185, 185, 185,0.04) 0%, rgba(185, 185, 185,0.04) 50%,rgba(25, 25, 25,0.04) 50%, rgba(25, 25, 25,0.04) 100%),radial-gradient(circle at 79% 39%, rgba(34, 34, 34,0.04) 0%, rgba(34, 34, 34,0.04) 50%,rgba(57, 57, 57,0.04) 50%, rgba(57, 57, 57,0.04) 100%),linear-gradient(56deg, rgb(39, 37, 178),rgb(169, 88, 194));
