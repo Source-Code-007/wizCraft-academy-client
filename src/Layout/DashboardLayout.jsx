@@ -12,7 +12,7 @@ const DashboardLayout = () => {
     const [isRole, isRoleLoading] = UseRole()
     const { user } = UseAuth()
 
-    if (isRoleLoading) {
+    if (user?.email && isRoleLoading) {
         return <div className="h-screen flex items-center justify-center bg-[#063a92]">
             <ThreeCircles
                 height="100"
@@ -29,12 +29,14 @@ const DashboardLayout = () => {
         </div>
     }
 
+
+
     return (
         <div className="drawer lg:drawer-open overflow-x-hidden">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
             <div className="drawer-content lg:ml-80">
                 {/* Page content here */}
-                <label htmlFor="my-drawer-2" className="cmn-btn-one absolute top-2 right-2 drawer-button lg:hidden">Open drawer</label>
+                <label htmlFor="my-drawer-2" className="cmn-btn-one fixed top-2 right-2 drawer-button lg:hidden z-50">Open drawer</label>
                 <Outlet></Outlet>
 
             </div>
@@ -61,16 +63,16 @@ const DashboardLayout = () => {
 
                     {
                         isRole === 'student' ?
-                            <Slide left cascade><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
+                            <Slide left cascade><li><DashboardActiveLink to={'/dashboard-home'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-selected-classes'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-enrolled-classes'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/payment-history'}> <FaUniversity></FaUniversity> Payment History </DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
-                                <Slide left cascade><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
+                                <Slide left cascade><li><DashboardActiveLink to={'/dashboard-home'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/add-class'}> <FaSearchPlus></FaSearchPlus> Add Class</DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/my-classes'}> <FaRegWindowRestore></FaRegWindowRestore> My Classes</DashboardActiveLink></li></Slide>
                                 : isRole === 'admin' ?
-                                    <Slide left cascade> <li><DashboardActiveLink to={'/dashboard-admin'}> <FaUserSecret></FaUserSecret> Admin Home</DashboardActiveLink></li>
+                                    <Slide left cascade> <li><DashboardActiveLink to={'/dashboard-home'}> <FaUserSecret></FaUserSecret> Admin Home</DashboardActiveLink></li>
                                         <li><DashboardActiveLink to={'/admin/manage-classes'}> <FaVenus></FaVenus> Manage Classes</DashboardActiveLink></li>
                                         <li><DashboardActiveLink to={'/admin/manage-users'}> <FaUsers></FaUsers> Manage Users</DashboardActiveLink></li> </Slide> : ''
                     }

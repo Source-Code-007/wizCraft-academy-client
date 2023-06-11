@@ -65,6 +65,7 @@ const SelectedClasses = () => {
         localStorage.setItem('payment-info', JSON.stringify(classP))
     }
 
+    
     return (
         <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
             {

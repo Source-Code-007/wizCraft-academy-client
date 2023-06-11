@@ -6,14 +6,16 @@ import bgImg from '../../assets/img/signinBg.jpg'
 import axios from 'axios';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from 'react-toastify';
+import UseAxiosSecure from '../../Hook/UseAxiosSecure';
 
 
 const AddClass = () => {
     const { user } = UseAuth()
+    const {axiosSecure} = UseAxiosSecure()
     const [success, setSuccess] = useState('')
     const [error, setError] = useState('')
 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, watch, formState: { errors } } = useForm();
     const handleAddClassFunc = form => {
         form.instructorName = user?.displayName
         form.instructorEmail = user?.email
@@ -22,8 +24,9 @@ const AddClass = () => {
         const myClass = { instructorName, instructorEmail, className, classImg, availableSeats: parseInt(availableSeats), price: parseInt(price), status:'pending' }
 
         // store class in database
-        axios.post('http://localhost:3000/instructor/add-class', { myClass })
+        axiosSecure.post('http://localhost:3000/instructor/add-class', { myClass })
             .then(res => {
+                reset()
                 if(res.data.insertedId){
                     toast.success('Class added successfully!', {
                         position: "top-right",

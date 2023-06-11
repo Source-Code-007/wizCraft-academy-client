@@ -172,7 +172,7 @@ const CheckoutForm = ({ paymentItem }) => {
       }}></CardElement>
 
       {error && <p className='text-red-500 my-2'>{error}</p>}
-      <button disabled={!stripe || !elements || !paymentItem?.price || isDisable} type='submit' className={`test cmn-btn-two my-4 ${isDisable && 'bg-[#063a92] text-slate-300'}`}>Payment</button>
+      <button disabled={!stripe || !elements || !paymentItem?.price || isDisable} type='submit' className={`test cmn-btn-two my-4 ${isDisable && '!bg-[#063a92] text-slate-300'}`}>Payment</button>
 
 
       <ToastContainer

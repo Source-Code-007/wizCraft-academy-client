@@ -15,7 +15,7 @@ const Signin = () => {
     const [error, setError] = useState('')
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location?.state?.from?.location
+    const from = location?.state?.from?.pathname
 
     const { register, handleSubmit, watch, reset, formState: { errors } } = useForm()
     const handleSigninFunc = form => {

@@ -7,15 +7,17 @@ import { ToastContainer, toast } from 'react-toastify';
 import FeedbackModal from './FeedbackModal';
 import ManageClassesBtn from './ManageClassesBtn';
 import { useState } from 'react';
+import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 
 
 const ManageClasses = () => {
+    const {axiosSecure} = UseAxiosSecure()
     const [currentClassId, setCurrentClassId] = useState(null)
 
     const { isLoading, data: allClasses, refetch, error } = useQuery({
         queryKey: ['allClasses'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/all-classes')
+            const res = await axiosSecure.get('http://localhost:3000/all-classes')
             return res.data
         }
     })
@@ -25,7 +27,7 @@ const ManageClasses = () => {
         if (!feedback) {
             return
         }
-        axios.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, { feedback })
+        axiosSecure.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, { feedback })
             .then(res => {
                 if (res.data.acknowledged) {
                     toast.success('Feedback added!', {

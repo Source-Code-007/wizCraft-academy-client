@@ -22,6 +22,7 @@ import SelectedClasses from './Dashboard/Student/SelectedClasses/SelectedClasses
 import EnrolledClasses from './Dashboard/Student/EnrolledClasses/EnrolledClasses'
 import PaymentPage from './Dashboard/Student/PaymentPage/PaymentPage'
 import PaymentHistory from './Dashboard/Student/PaymentHistory/PaymentHistory'
+import StudentRoute from './PrivateRoute/StudentRoute'
 
 
 
@@ -58,24 +59,24 @@ const router = createBrowserRouter([
     element: <DashboardLayout/>,
     children: [
       {
-        path: '/dashboard',
+        path: '/dashboard-home',
         element: <DashboardHome></DashboardHome>
       },
       {
         path: '/my-selected-classes',
-        element: <SelectedClasses></SelectedClasses>
+        element: <StudentRoute><SelectedClasses></SelectedClasses></StudentRoute>
       },
       {
         path: '/my-enrolled-classes',
-        element: <EnrolledClasses></EnrolledClasses>
+        element: <StudentRoute><EnrolledClasses></EnrolledClasses></StudentRoute>
       },
       {
         path: '/make-payment',
-        element: <PaymentPage></PaymentPage>
+        element: <StudentRoute><PaymentPage></PaymentPage></StudentRoute>
       },
       {
         path: '/payment-history',
-        element: <PaymentHistory></PaymentHistory>
+        element: <StudentRoute><PaymentHistory></PaymentHistory></StudentRoute>
       },
 
       {

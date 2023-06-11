@@ -5,10 +5,10 @@ import { ThreeCircles } from 'react-loader-spinner';
 import { FaHeart } from 'react-icons/fa';
 import UseAuth from '../../Hook/UseAuth';
 import Swal from 'sweetalert2';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import UseRole from '../../Hook/UseRole';
 import { ToastContainer, toast } from 'react-toastify';
-import { useQueries, useQuery } from '@tanstack/react-query';
+import { useQuery } from '@tanstack/react-query';
 
 const ClassesPage = () => {
 
@@ -17,8 +17,7 @@ const ClassesPage = () => {
     const { axiosSecure } = UseAxiosSecure()
     const [classes, setClasses] = useState(null)
     const [classesIsLoading, setClassesIsLoading] = useState(true)
-    // const [selectedClasses, setSelectedClasses] = useState(null)
-    // const [selectedClassesIsLoading, setSelectedClassesIsLoading] = useState(true)
+    const location = useLocation()
     const navigate = useNavigate()
 
     // all approved classes
@@ -51,7 +50,7 @@ const ClassesPage = () => {
                 confirmButtonText: 'Yes, login!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    navigate('/signin')
+                    navigate('/signin', { state: { from: location } })
                 }
             })
             return
@@ -81,8 +80,8 @@ const ClassesPage = () => {
     const isAlreadySelectedClass = (id) => {
         const selectedClass = selectedClasses.find(classP => classP.classId === id)
         let isSelectedClass
-        if(selectedClass){
-            isSelectedClass =  selectedClass.selectBy.includes(user?.email)
+        if (selectedClass) {
+            isSelectedClass = selectedClass.selectBy.includes(user?.email)
         }
         return isSelectedClass
     }
