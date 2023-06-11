@@ -16,9 +16,9 @@ const SelectedClasses = () => {
     const navigate = useNavigate()
 
     const { data: selectedClasses, isLoading: selectedClassesIsLoading, error, refetch } = useQuery({
-        queryKey: ['specificSelectedClasses'],
+        queryKey: ['mySelectedClasses'],
         queryFn: async () => {
-            const result = await axiosSecure.get(`/specific-user-selected-classes?email=${user?.email}`)
+            const result = await axiosSecure.get(`/my-selected-classes?email=${user?.email}`)
             return result.data
         },
         enabled: !!user?.email
@@ -37,7 +37,7 @@ const SelectedClasses = () => {
                 confirmButtonText: 'Yes, Delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    axiosSecure.delete(`/delete-specific-user-selected-classes?email=${user?.email}&&id=${classId}`)
+                    axiosSecure.delete(`/delete-my-selected-classes?email=${user?.email}&&id=${classId}`)
                         .then(res => {
                             if (res.data.acknowledged) {
                                 toast.success('Class deleted!', {
@@ -81,7 +81,7 @@ const SelectedClasses = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : !selectedClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no class added!</h2></div>
+                    : !selectedClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no selected classes!</h2></div>
                     : <div className='my-container py-28 grid grid-cols-3 gap-5'>
                         {
                             selectedClasses.map((classP, ind) => {

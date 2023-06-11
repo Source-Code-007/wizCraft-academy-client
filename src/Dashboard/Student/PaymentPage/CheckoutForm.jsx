@@ -2,7 +2,6 @@
 /* eslint-disable no-unused-vars */
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-import '../PaymentPage/Payment.css'
 import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 import UseAuth from '../../../Hook/UseAuth';
 import { ToastContainer, toast } from 'react-toastify';
@@ -13,6 +12,7 @@ const CheckoutForm = ({ paymentItem }) => {
   const { user } = UseAuth()
   const stripe = useStripe()
   const elements = useElements()
+  const [isDisable, setIsDisable] = useState(false)
   const [clientSecret, setClientSecret] = useState(null)
   const [error, setError] = useState(null)
 
@@ -28,7 +28,9 @@ const CheckoutForm = ({ paymentItem }) => {
   // handlePaymentSubmit
   const handlePaymentSubmit = async (e) => {
     e.preventDefault()
+    setIsDisable(true)
     if (!stripe || !elements) {
+      setIsDisable(false)
       return
     }
 
@@ -40,6 +42,7 @@ const CheckoutForm = ({ paymentItem }) => {
 
     if (error) {
       setError(error.message);
+      setIsDisable(false)
       return
     }
 
@@ -67,6 +70,7 @@ const CheckoutForm = ({ paymentItem }) => {
 
         if (confirmPaymentErr) {
           setError(confirmPaymentErr.message);
+          setIsDisable(false)
           return
         }
 
@@ -74,39 +78,40 @@ const CheckoutForm = ({ paymentItem }) => {
 
 
         // store payment data in database > stored in enrolled classes > remove from selected classes > reduce available seat from particular class 
-        const { id, amount } = paymentIntent
-        const paymentInfo = { selectedClassId: paymentItem?._id, classId: paymentItem?.classId, trxId: id, amount, date: new Date(), user: user?.displayName, email: user?.email }
+        const { paymentTrxId, amount } = paymentIntent
+        const paymentInfo = { selectedClassId: paymentItem?._id, classId: paymentItem?.classId, trxId: paymentTrxId, amount, date: new Date(), user: user?.displayName, email: user?.email }
 
         axiosSecure.post('/store-payment-info', paymentInfo)
           .then(res => {
             if (res.data.acknowledged) {
 
-              axiosSecure.post('/enrolled-classes', { enrolledClass: paymentItem, email: user?.email })
+              const enrolledClass = { ...paymentItem, trxId: paymentTrxId, date: new Date(), enrolledBy: user?.email }
+              axiosSecure.post('/enrolled-classes', { enrolledClass })
                 .then(res => {
                   if (res.data?.acknowledged) {
 
-
-                    axiosSecure.delete(`/delete-specific-user-selected-classes?email=${user?.email}&&id=${paymentItem.classId}`)
+                    axiosSecure.delete(`/delete-my-selected-classes?email=${user?.email}&&id=${paymentItem.classId}`)
                       .then(res => {
                         if (res.data?.acknowledged) {
 
-                          axiosSecure.patch('/reduce-available-seat-from-class', {classId:paymentItem?.classId})
-                          .then(res=> {
+                          axiosSecure.patch('/reduce-available-seat-from-class', { classId: paymentItem?.classId })
+                            .then(res => {
 
-                            if(res.data?.acknowledged){
-                              toast.success('Payment success!', {
-                                position: "top-right",
-                                autoClose: 1500,
-                                hideProgressBar: false,
-                                closeOnClick: true,
-                                pauseOnHover: true,
-                                draggable: true,
-                                progress: undefined,
-                                theme: "light",
-                              });  
-                            }
+                              if (res.data?.acknowledged) {
+                                setIsDisable(false)
+                                toast.success('Payment success!', {
+                                  position: "top-right",
+                                  autoClose: 1500,
+                                  hideProgressBar: false,
+                                  closeOnClick: true,
+                                  pauseOnHover: true,
+                                  draggable: true,
+                                  progress: undefined,
+                                  theme: "light",
+                                });
+                              }
 
-                          }).catch(e=> setError(e.message))
+                            }).catch(e => setError(e.message))
 
                         }
                       }).catch(e => setError(e.message))
@@ -117,7 +122,7 @@ const CheckoutForm = ({ paymentItem }) => {
 
             }
           }).catch(e => setError(e.message))
-
+        setIsDisable(false)
       }
     })
 
@@ -156,7 +161,7 @@ const CheckoutForm = ({ paymentItem }) => {
       }}></CardElement>
 
       {error && <p className='text-red-500 my-2'>{error}</p>}
-      <button disabled={!stripe || !elements || !paymentItem?.price} type='submit' className='test cmn-btn-two my-4'>Payment</button>
+      <button disabled={!stripe || !elements || !paymentItem?.price || isDisable} type='submit' className='test cmn-btn-two my-4'>Payment</button>
 
 
       <ToastContainer
