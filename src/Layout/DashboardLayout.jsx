@@ -63,7 +63,8 @@ const DashboardLayout = () => {
                         isRole === 'student' ?
                             <Slide left cascade><li><DashboardActiveLink to={'/dashboard/student'}> <FaUserGraduate></FaUserGraduate> Student Home</DashboardActiveLink></li>
                                 <li><DashboardActiveLink to={'/my-selected-classes'}> <FaChalkboardTeacher></FaChalkboardTeacher> My selected classes</DashboardActiveLink></li>
-                                <li><DashboardActiveLink to={'/my-enrolled-classes'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li></Slide>
+                                <li><DashboardActiveLink to={'/my-enrolled-classes'}> <FaUniversity></FaUniversity> Enrolled classes</DashboardActiveLink></li>
+                                <li><DashboardActiveLink to={'/payment-history'}> <FaUniversity></FaUniversity> Payment History </DashboardActiveLink></li></Slide>
                             : isRole === 'instructor' ?
                                 <Slide left cascade><li><DashboardActiveLink to={'/dashboard/instructor'}> <FaHome></FaHome> Instructor Home </DashboardActiveLink></li>
                                     <li><DashboardActiveLink to={'/instructor/add-class'}> <FaSearchPlus></FaSearchPlus> Add Class</DashboardActiveLink></li>

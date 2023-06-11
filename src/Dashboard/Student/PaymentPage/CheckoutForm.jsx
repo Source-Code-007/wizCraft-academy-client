@@ -6,6 +6,7 @@ import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 import UseAuth from '../../../Hook/UseAuth';
 import { ToastContainer, toast } from 'react-toastify';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const CheckoutForm = ({ paymentItem }) => {
   const { axiosSecure } = UseAxiosSecure()
@@ -15,6 +16,7 @@ const CheckoutForm = ({ paymentItem }) => {
   const [isDisable, setIsDisable] = useState(false)
   const [clientSecret, setClientSecret] = useState(null)
   const [error, setError] = useState(null)
+  const navigate = useNavigate()
 
   // create payment intent and get client secret for further payment process
   useEffect(() => {
@@ -79,8 +81,8 @@ const CheckoutForm = ({ paymentItem }) => {
 
 
         // store payment data in database > stored in enrolled classes > remove from selected classes > reduce available seat from particular class 
-        const { paymentTrxId, amount } = paymentIntent
-        const paymentInfo = { selectedClassId: paymentItem?._id, classId: paymentItem?.classId, trxId: paymentTrxId, amount, date: new Date(), user: user?.displayName, email: user?.email }
+        const { id:paymentTrxId, amount } = paymentIntent
+        const paymentInfo = { selectedClassId: paymentItem?._id, className: paymentItem?.className, classId: paymentItem?.classId, trxId: paymentTrxId, amount, date: new Date(), user: user?.displayName, email: user?.email }
 
         axiosSecure.post('/store-payment-info', paymentInfo)
           .then(res => {
@@ -114,6 +116,7 @@ const CheckoutForm = ({ paymentItem }) => {
                                   theme: "light",
                                 });
                                 localStorage.removeItem('payment-info')
+                                navigate('/payment-history')
                               }
 
                             }).catch(e => setError(e.message))

@@ -21,6 +21,7 @@ import ClassesPage from './Pages/ClassesPage/ClassesPage'
 import SelectedClasses from './Dashboard/Student/SelectedClasses/SelectedClasses'
 import EnrolledClasses from './Dashboard/Student/EnrolledClasses/EnrolledClasses'
 import PaymentPage from './Dashboard/Student/PaymentPage/PaymentPage'
+import PaymentHistory from './Dashboard/Student/PaymentHistory/PaymentHistory'
 
 
 
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
         path: '/make-payment',
         element: <PaymentPage></PaymentPage>
       },
+      {
+        path: '/payment-history',
+        element: <PaymentHistory></PaymentHistory>
+      },
 
       {
         path: '/instructor/add-class',
@@ -89,7 +94,7 @@ const router = createBrowserRouter([
       {
         path: '/admin/manage-users',
         element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
-      }
+      },
     ]
   }
   
