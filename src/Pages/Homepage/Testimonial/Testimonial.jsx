@@ -11,6 +11,7 @@ import { useEffect, useState } from 'react';
 import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 import { ThreeCircles } from 'react-loader-spinner';
 import { FaQuoteLeft } from 'react-icons/fa';
+import { Fade } from 'react-awesome-reveal';
 
 const Testimonial = () => {
     const { axiosSecure } = UseAxiosSecure()
@@ -48,7 +49,7 @@ const Testimonial = () => {
                     innerCircleColor=""
                     middleCircleColor=""
                 /> </div> :
-                <Swiper
+                  <Swiper
                     breakpoints={{
                         // when window width is >= 640px
                         320: {

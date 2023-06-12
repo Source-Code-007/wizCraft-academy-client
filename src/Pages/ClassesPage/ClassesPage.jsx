@@ -101,7 +101,7 @@ const ClassesPage = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
+                    : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 md:px-5'>
                         {
                             classes.map((classP, ind) => {
                                 const { _id, classImg, className, instructorName, availableSeats, price } = classP
@@ -111,8 +111,8 @@ const ClassesPage = () => {
                                     <div className="card-body font-semibold text-lg relative !pt-10">
                                         <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
                                         <p>Instructor name: {instructorName}</p>
-                                        <p>Available seats: {availableSeats}</p>
-                                        <p>price: {price}</p>
+                                        <p className={`${!availableSeats? 'text-red-500' : ''}`}>Available seats: {availableSeats}</p>
+                                        <p>price: ${price}</p>
 
                                         <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))}
                                             className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))) ? '!bg-[#063a92] !text-slate-300' : ''}`}

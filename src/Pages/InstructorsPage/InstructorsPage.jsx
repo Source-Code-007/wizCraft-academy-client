@@ -32,19 +32,17 @@ const InstructorsPage = () => {
                     : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
                         {
                             instructors.map((instructor, ind) => {
-                                const { _id, name, photo, email, date } = instructor
+                                const { _id, name, photo, email, date, enrolledStudent } = instructor
 
                                 return <div key={ind} className="card card-compact rounded-b-none bg-slate-800 bg-opacity-50 shadow-xl text-slate-200 overflow-hidden">
-                                    <div className="h-40 relative">
+                                    <div className="h-40 relative bg-[#02066f] bg-opacity-25">
                                         <figure className='shadow'><img src={photo} alt={name} className='h-40 w-40 my-8 rounded-xl absolute -bottom-24 z-10' /></figure>
                                     </div>
                                     <div className="card-body font-semibold text-lg relative !pt-28 rounded-t-xl cmn-gradient-one">
                                         <h2 className="card-title absolute top-14  translate-x-5 bg-[#063a92] p-2 z-20">{name}</h2>
                                         <p>Email: {email}</p>
                                         <p>Joining date: {new Date(date).toLocaleDateString()}</p>
-                                        <p>Total Class: pending</p>
-                                        <p>Classes: pending, pending, pending</p>
-                                        <p>Total student: pending</p>
+                                        <p className={`${!enrolledStudent ? 'text-red-500' : ''}`}>Total student: {enrolledStudent}</p>
                                         <button className="cmn-btn-two">See classes</button>
                                     </div>
                                 </div>
