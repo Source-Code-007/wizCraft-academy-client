@@ -1,4 +1,4 @@
-**Magic School Summer Camp Website**
+**WizCraft Academy**
 
 Welcome to the Magic School Summer Camp website! This is a React-based project that allows students to enroll in and learn specific extra-curricular activities during their summer break. The website utilizes React, Express, MongoDB, Tailwind CSS, and Firebase to provide a seamless experience for students, parents, and administrators.
 
@@ -9,7 +9,7 @@ Welcome to the Magic School Summer Camp website! This is a React-based project t
 - Course catalog: Browse and search for available courses.
 - Course enrollment: Students can enroll in their desired courses.
 - Student dashboard: View enrolled courses and track progress.
-- Instructor dashboard: Instructor can add new class.
+- Instructor dashboard: Instructor can add new class and update their class.
 - Admin panel: Manage courses, students, registrations and new class from instructor.
 - Responsive design: The website is optimized for various devices and screen sizes.
 
