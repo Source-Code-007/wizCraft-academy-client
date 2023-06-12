@@ -20,8 +20,9 @@ const GoToTop = () => {
     const handleGoToTop = () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
+
     return (
-            <button onClick={handleGoToTop} className={`z-50 fixed bottom-5 right-5 opacity-50 hover:opacity-100 transition duration-500 btn border-none bg-orange-500 hover:bg-orange-700 font-bold rounded-full ${showButton? 'inline-block' : 'hidden'}`}>
+              <button onClick={handleGoToTop} className={`z-50 fixed bottom-5 right-5 opacity-50 hover:opacity-100 transition duration-500 btn border-none bg-orange-500 hover:bg-orange-700 font-bold rounded-full ${showButton? 'inline-block' : 'hidden'}`}>
                 <FaArrowUp></FaArrowUp>
             </button>
     );

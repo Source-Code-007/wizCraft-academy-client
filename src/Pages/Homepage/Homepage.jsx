@@ -1,3 +1,4 @@
+import GoToTop from "../../HelpingComponent/GoToTop";
 import Banner from "./Banner/Banner";
 import PopularClass from "./PopularClass/PopularClass";
 import PopularInstructor from "./PopularInstructor/PopularInstructor";
@@ -10,6 +11,7 @@ const Homepage = () => {
                 <PopularClass></PopularClass>
                 <PopularInstructor></PopularInstructor>
                 <Testimonial></Testimonial>
+                <GoToTop></GoToTop>
         </>
     );
 };
