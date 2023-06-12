@@ -1,7 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import bgImg from '../../assets/img/signinBg.jpg'
 import { FaPen } from "react-icons/fa";
-import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 import UseAuth from '../../Hook/UseAuth';
 import UseAxiosSecure from '../../Hook/UseAxiosSecure';
@@ -18,7 +17,7 @@ const MyClasses = () => {
     const { isLoading: myClassesLoading, data: myClasses, refetch, } = useQuery({
         queryKey: ['myClasses'],
         queryFn: async () => {
-            const result = await axiosSecure.get(`https://wizcraft-academy-server.vercel.app/instructor/my-classes?email=${user?.email}`)
+            const result = await axiosSecure(`/instructor/my-classes?email=${user?.email}`)
             return result.data
         },
         enabled: !!user.email

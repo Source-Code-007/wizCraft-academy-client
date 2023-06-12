@@ -1,6 +1,4 @@
 import { useQuery } from "@tanstack/react-query";
-import { Slide } from "react-awesome-reveal";
-import { FaTrash } from "react-icons/fa";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
 import UseAuth from "../../../Hook/UseAuth";
@@ -14,7 +12,7 @@ const EnrolledClasses = () => {
     const {data:enrolledClasses, refetch, isLoading, error} = useQuery({
         queryKey: ['enrolledClasses'],
         queryFn: async()=>{
-            const res = await axiosSecure.get(`/my-enrolled-classes?email=${user?.email}`)
+            const res = await axiosSecure(`/my-enrolled-classes?email=${user?.email}`)
             return res.data
         },
         enabled: !!user?.email && !authLoading

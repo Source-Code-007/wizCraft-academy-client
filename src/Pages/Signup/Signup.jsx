@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useForm } from 'react-hook-form';
 import signupLottie from '../../../public/lottieAnimation/signup-lottie.json'
 import UseAuth from "../../Hook/UseAuth";
@@ -7,6 +8,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import bgImg from '../../assets/img/signinBg.jpg'
 import axios from 'axios';
+import successRegistrationLottie from '../../../public/lottieAnimation/successfully-registration-lottie.json'
+import Swal from 'sweetalert2';
 
 const Signup = () => {
     const { createUserWithEmailPassFunc, setAuthLoading, updateProfileFunc, signoutUserFunc } = UseAuth()
@@ -47,7 +50,22 @@ const Signup = () => {
                         axios.post('https://wizcraft-academy-server.vercel.app/users', { user })
                             .then(res => {
                                 setSuccess('user created successfully')
-                                navigate('/signin')
+                                let timerInterval
+                                Swal.fire({
+                                    title: 'Congratulations! Registration success.',
+                                    html: 'navigate to signin page',
+                                    timer: 5000,
+                                    timerProgressBar: true,
+                                    willClose: () => {
+                                        clearInterval(timerInterval)
+                                    }
+                                }).then((result) => {
+                                    /* Read more about handling dismissals below */
+                                    if (result.dismiss === Swal.DismissReason.timer) {
+                                        navigate('/signin')
+                                    }
+                                })
+
                             }).catch(e => console.log(e.message))
 
                     }).catch(e => console.log(e.message))
@@ -125,7 +143,7 @@ const Signup = () => {
 
                 </form>
 
-                <Lottie animationData={signupLottie} loop={true} className='h-full w-full' />
+                <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full' />
             </div>
         </div>
     );

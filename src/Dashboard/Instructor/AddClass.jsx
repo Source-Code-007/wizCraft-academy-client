@@ -24,7 +24,7 @@ const AddClass = () => {
         const myClass = { instructorName, instructorEmail, className, classImg, availableSeats: parseInt(availableSeats), enrolledStudent: 0, price: parseInt(price), status:'pending' }
 
         // store class in database
-        axiosSecure.post('https://wizcraft-academy-server.vercel.app/instructor/add-class', { myClass })
+        axiosSecure.post('/instructor/add-class', { myClass })
             .then(res => {
                 reset()
                 if(res.data.insertedId){

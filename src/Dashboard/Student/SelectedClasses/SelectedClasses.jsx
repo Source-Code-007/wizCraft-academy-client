@@ -18,7 +18,7 @@ const SelectedClasses = () => {
     const { data: selectedClasses, isLoading: selectedClassesIsLoading, error, refetch } = useQuery({
         queryKey: ['mySelectedClasses'],
         queryFn: async () => {
-            const result = await axiosSecure.get(`/my-selected-classes?email=${user?.email}`)
+            const result = await axiosSecure(`/my-selected-classes?email=${user?.email}`)
             return result.data
         },
         enabled: !!user?.email

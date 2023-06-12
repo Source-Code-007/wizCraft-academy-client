@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import UseAxiosSecure from '../../Hook/UseAxiosSecure';
-import bgImg from '../../assets/img/signinBg.jpg'
 import { ThreeCircles } from 'react-loader-spinner';
 import { FaHeart } from 'react-icons/fa';
 import UseAuth from '../../Hook/UseAuth';
@@ -87,7 +86,7 @@ const ClassesPage = () => {
     }
 
     return (
-        <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
+        <div className='min-h-screen'>
             {
                 (classesIsLoading || selectedClassesIsLoading || (user?.email && isRoleLoading)) ? <div className="h-screen flex items-center justify-center">
                     <ThreeCircles

@@ -23,6 +23,7 @@ import EnrolledClasses from './Dashboard/Student/EnrolledClasses/EnrolledClasses
 import PaymentPage from './Dashboard/Student/PaymentPage/PaymentPage'
 import PaymentHistory from './Dashboard/Student/PaymentHistory/PaymentHistory'
 import StudentRoute from './PrivateRoute/StudentRoute'
+import ErrorPage from './Pages/ErrorPage/ErrorPage'
 
 
 
@@ -30,6 +31,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <LayoutOne />,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -57,6 +59,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <DashboardLayout/>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/dashboard-home',

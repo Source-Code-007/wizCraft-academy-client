@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import UseAxiosSecure from "../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
-import bgImg from '../../assets/img/signinBg.jpg'
 
 const InstructorsPage = () => {
     const { axiosSecure } = UseAxiosSecure()
@@ -15,7 +14,7 @@ const InstructorsPage = () => {
     }, [axiosSecure])
 
     return (
-        <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
+        <div className='min-h-screen'>
             {
                 isLoading ? <div className="h-screen flex items-center justify-center">
                     <ThreeCircles

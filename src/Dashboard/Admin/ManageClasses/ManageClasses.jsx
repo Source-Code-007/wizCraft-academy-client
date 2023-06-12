@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import bgImg from '../../../assets/img/signinBg.jpg'
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
@@ -17,7 +18,7 @@ const ManageClasses = () => {
     const { isLoading, data: allClasses, refetch, error } = useQuery({
         queryKey: ['allClasses'],
         queryFn: async () => {
-            const res = await axiosSecure.get('https://wizcraft-academy-server.vercel.app/all-classes')
+            const res = await axiosSecure('/all-classes')
             return res.data
         }
     })
@@ -27,7 +28,7 @@ const ManageClasses = () => {
         if (!feedback) {
             return
         }
-        axiosSecure.put(`https://wizcraft-academy-server.vercel.app/admin/add-feedback/${currentClassId}`, { feedback })
+        axiosSecure.put(`/admin/add-feedback/${currentClassId}`, { feedback })
             .then(res => {
                 if (res.data.acknowledged) {
                     toast.success('Feedback added!', {
@@ -62,7 +63,7 @@ const ManageClasses = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 lg:gap-10'>
                         {
                             allClasses.map((classP, ind) => {
                                 const { _id, instructorName, instructorEmail, className, classImg, status, availableSeats, feedback, price } = classP
