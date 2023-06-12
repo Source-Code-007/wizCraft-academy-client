@@ -44,7 +44,7 @@ const Signup = () => {
 
                         // user stored in database 
                         const user = { name, photo, email, date: new Date(), role: 'student' }
-                        axios.post('http://localhost:3000/users', { user })
+                        axios.post('https://wizcraft-academy-server.vercel.app/users', { user })
                             .then(res => {
                                 setSuccess('user created successfully')
                                 navigate('/signin')

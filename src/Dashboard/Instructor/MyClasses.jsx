@@ -18,7 +18,7 @@ const MyClasses = () => {
     const { isLoading: myClassesLoading, data: myClasses, refetch, } = useQuery({
         queryKey: ['myClasses'],
         queryFn: async () => {
-            const result = await axiosSecure.get(`http://localhost:3000/instructor/my-classes?email=${user?.email}`)
+            const result = await axiosSecure.get(`https://wizcraft-academy-server.vercel.app/instructor/my-classes?email=${user?.email}`)
             return result.data
         },
         enabled: !!user.email

@@ -10,7 +10,7 @@ const ManageUsers = () => {
     const { data: allUsers, refetch, error, isLoading } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/all-users')
+            const res = await axios.get('https://wizcraft-academy-server.vercel.app/all-users')
             return res.data
         }
     })
@@ -18,7 +18,7 @@ const ManageUsers = () => {
 
     // handle make role by admin
     const handleMakeRoleFunc = (id, updatedRole) => {
-        axios.patch(`http://localhost:3000/admin/make-role/${id}`, { updatedRole })
+        axios.patch(`https://wizcraft-academy-server.vercel.app/admin/make-role/${id}`, { updatedRole })
             .then(res => {
                 if (res.data.modifiedCount) {
                     toast.success('Role Updated!', {

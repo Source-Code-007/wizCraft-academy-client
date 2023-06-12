@@ -17,7 +17,7 @@ const ManageClasses = () => {
     const { isLoading, data: allClasses, refetch, error } = useQuery({
         queryKey: ['allClasses'],
         queryFn: async () => {
-            const res = await axiosSecure.get('http://localhost:3000/all-classes')
+            const res = await axiosSecure.get('https://wizcraft-academy-server.vercel.app/all-classes')
             return res.data
         }
     })
@@ -27,7 +27,7 @@ const ManageClasses = () => {
         if (!feedback) {
             return
         }
-        axiosSecure.put(`http://localhost:3000/admin/add-feedback/${currentClassId}`, { feedback })
+        axiosSecure.put(`https://wizcraft-academy-server.vercel.app/admin/add-feedback/${currentClassId}`, { feedback })
             .then(res => {
                 if (res.data.acknowledged) {
                     toast.success('Feedback added!', {

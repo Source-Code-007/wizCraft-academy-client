@@ -61,7 +61,7 @@ const AuthContext = ({ children }) => {
             if (currUser) {
                 setAuthLoading(false)
                 // JWT create
-                axios.post('http://localhost:3000/create-jwt', {email: currUser.email})
+                axios.post('https://wizcraft-academy-server.vercel.app/create-jwt', {email: currUser.email})
                 .then((res) => {
                     localStorage.setItem('jwt-token', res.data);
                     setUser(currUser);
