@@ -102,7 +102,7 @@ const ClassesPage = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-28 grid grid-cols-3 gap-5'>
+                    : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
                         {
                             classes.map((classP, ind) => {
                                 const { _id, classImg, className, instructorName, availableSeats, price } = classP

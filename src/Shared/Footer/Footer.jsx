@@ -31,12 +31,12 @@ const Footer = () => {
                     <h2 className='font-bold text-2xl'>WizCraft Academy</h2>
                     <div className='relative'>
                         <p className='font-bold pb-2'>Established . 2018</p>
-                        <div className='h-0.5 w-10 bg-[#a112956f] absolute top-full left-0 right-0 mx-auto'></div>
+                        <div className='h-0.5 w-10 bg-[#e74c3c] absolute top-full left-0 right-0 mx-auto'></div>
                     </div>
                     <ul className='flex gap-2 text-xl'>
-                        <li> <Link className='rounded-full h-10 w-10 border border-[#a112956f] flex justify-center items-center'> <FaFacebookF></FaFacebookF> </Link> </li>
-                        <li> <Link className='rounded-full h-10 w-10 border border-[#a112956f] flex justify-center items-center'> <FaTwitter></FaTwitter> </Link> </li>
-                        <li> <Link className='rounded-full h-10 w-10 border border-[#a112956f] flex justify-center items-center'> <FaGithub></FaGithub> </Link> </li>
+                        <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaFacebookF></FaFacebookF> </Link> </li>
+                        <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaTwitter></FaTwitter> </Link> </li>
+                        <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaGithub></FaGithub> </Link> </li>
                     </ul>
 
                 </div>
@@ -53,7 +53,7 @@ const Footer = () => {
         </div>
 
         <div className='text-center border-t border-t-slate-800 text-slate-300'>
-            <p className='py-6 font-bold'>Copyright © 2023 - All right reserved by WizCraft Academy</p>
+            <p className='py-6 font-bold'>Copyright © 2023 - All right reserved by <span className="text-[#e74c3c] text-lg">WizCraft Academy</span></p>
         </div>
     </footer>
     );

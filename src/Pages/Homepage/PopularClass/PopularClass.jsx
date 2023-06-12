@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
-import bgImg from '../../../assets/img/signinBg.jpg'
 import CommonSectionTitle from "../../../HelpingComponent/CommonSectionTitle";
 
 const PopularClass = () => {
@@ -17,7 +16,7 @@ const PopularClass = () => {
     }, [axiosSecure])
 
     return (
-        <div className='min-h-screen bg-center bg-cover bg-slate-900 bg-blend-overlay' style={{ backgroundImage: `url(${bgImg})` }}>
+        <div className='min-h-screen'>
         {
             isLoading ? <div className="h-screen flex items-center justify-center">
                 <ThreeCircles
@@ -34,10 +33,10 @@ const PopularClass = () => {
                 /> </div>
                 : <div className='my-container py-28 '>
                     <CommonSectionTitle title={'Popular Class'} subtitle={'Most wanted magic classes!'}></CommonSectionTitle>
-                    <div className="grid grid-cols-3 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5">
                     {
                         PopularClasses.map((classP, ind) => {
-                            const { _id, classImg, className, instructorName, availableSeats, price } = classP
+                            const { _id, classImg, className, instructorName, availableSeats, enrolledStudent, price } = classP
 
                             return <div key={ind} className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
                                 <figure className='shadow'><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
@@ -45,6 +44,7 @@ const PopularClass = () => {
                                     <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
                                     <p>Instructor name: {instructorName}</p>
                                     <p>Available seats: {availableSeats}</p>
+                                    <p>Enrolled student: {enrolledStudent}</p>
                                     <p>price: {price}</p>
 
                                 </div>

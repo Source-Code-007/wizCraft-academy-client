@@ -81,7 +81,7 @@ const CheckoutForm = ({ paymentItem }) => {
 
 
         // store payment data in database > stored in enrolled classes > remove from selected classes > reduce available seat from particular class 
-        const { id:paymentTrxId, amount } = paymentIntent
+        const { id: paymentTrxId, amount } = paymentIntent
         const paymentInfo = { selectedClassId: paymentItem?._id, className: paymentItem?.className, classId: paymentItem?.classId, trxId: paymentTrxId, amount, date: new Date(), user: user?.displayName, email: user?.email }
 
         axiosSecure.post('/store-payment-info', paymentInfo)
@@ -99,24 +99,30 @@ const CheckoutForm = ({ paymentItem }) => {
                         if (res.data?.acknowledged) {
 
                           //  reduce available seat and increase enrolled student from class and instructor...
-                          axiosSecure.patch('/reduce-available-seat-and-increase-enrolled-student', { classId: paymentItem?.classId, instructorEmail:paymentItem?.instructorEmail })
+                          axiosSecure.patch('/reduce-available-seat-and-increase-enrolled-student', { classId: paymentItem?.classId, instructorEmail: paymentItem?.instructorEmail })
                             .then(res => {
 
                               if (res.data?.acknowledged) {
                                 setIsDisable(false)
                                 // TODO: not working because of asynchronous behavior !paymentInfo condition
-                                toast.success('Payment success!', {
-                                  position: "top-right",
-                                  autoClose: 1500,
-                                  hideProgressBar: false,
-                                  closeOnClick: true,
-                                  pauseOnHover: true,
-                                  draggable: true,
-                                  progress: undefined,
-                                  theme: "light",
-                                });
-                                localStorage.removeItem('payment-info')
-                                navigate('/payment-history')
+
+                                let timerInterval
+                                Swal.fire({
+                                  title: 'Payment success!',
+                                  html: 'navigate to payment history page',
+                                  timer: 2000,
+                                  timerProgressBar: true,    
+                                  willClose: () => {
+                                    clearInterval(timerInterval)
+                                  }
+                                }).then((result) => {
+                                  /* Read more about handling dismissals below */
+                                  if (result.dismiss === Swal.DismissReason.timer) {
+                                    navigate('/payment-history')
+                                    localStorage.removeItem('payment-info')
+                                  }
+                                })
+
                               }
 
                             }).catch(e => setError(e.message))
