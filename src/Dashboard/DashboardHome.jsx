@@ -16,7 +16,6 @@ const DashboardHome = () => {
 
     useEffect(() => {
         axiosSecure(`/dashboard-stats?email=${user?.email}&&role=${isRole}`).then(res => {
-            console.log('hey');
             setStatsData(res.data)
             setStatsLoadingData(false)
         }
@@ -28,7 +27,7 @@ const DashboardHome = () => {
             <ThreeCircles
                 height="100"
                 width="100"
-                color="#02066f"
+                color="#e74c3c"
                 wrapperStyle={{}}
                 wrapperClass=""
                 visible={true}
@@ -65,28 +64,26 @@ const DashboardHome = () => {
     return (
         <div className="py-10 my-container">
 
-            <div className="stats shadow w-full py-16 text-center">
+            <div className="stats w-full py-16 text-center bg-[#e74d3ca1] text-white shadow-inner shadow-[#e74c3c] ">
 
                 <div className="stat">
-                    <div className="stat-title">{isStudent? 'Total enrollments': isInstructor? 'Rank': isAdmin? 'Total students' : ''}</div>
-                    <div className="stat-value text-primary">{isStudent? statsData?.totalEnrollments: isInstructor? statsData?.rank: isAdmin? statsData?.totalStudents : ''}</div>
+                    <div className="stat-value text-6xl mb-3">{isStudent? statsData?.totalEnrollments: isInstructor? statsData?.rank: isAdmin? statsData?.totalStudents : ''}</div>
+                    <div className="stat-title text-slate-300 font-semibold">{isStudent? 'Total enrollments': isInstructor? 'Rank': isAdmin? 'Total students' : ''}</div>
                 </div>
 
                 <div className="stat">
-                    <div className="stat-figure text-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-8 h-8 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <div className="stat-title">{isStudent? 'Total Expend': isInstructor? 'Total enrolled students' : isAdmin? 'Total enrolled students' : '' }</div>
-                    <div className="stat-value text-secondary">{isStudent? statsData?.totalExpend: isInstructor? statsData?.totalEnrolledStudents: isAdmin? statsData?.totalEnrolled : ''}</div>
+                    <div className="stat-value text-6xl mb-3">{isStudent? `$${statsData?.totalExpend}`: isInstructor? statsData?.totalEnrolledStudents: isAdmin? statsData?.totalEnrolled : ''}</div>
+                    <div className="stat-title text-slate-300 font-semibold">{isStudent? 'Total Expend': isInstructor? 'Total enrolled students' : isAdmin? 'Total enrolled students' : '' }</div>
                 </div>
 
                 <div className="stat">
-                    <div className="stat-value">{isStudent? statsData?.totalPayments: isInstructor? statsData?.totalEarning : isAdmin? statsData?.totalEarning : '' }</div>
-                    <div className="stat-title">{isStudent? 'Total payment': isInstructor? 'Total earning' : isAdmin? 'Total earning' : '' }</div>
+                    <div className="stat-value text-6xl mb-3">{isStudent? statsData?.totalPayments: isInstructor? `$${statsData?.totalEarning}` : isAdmin? statsData?.totalEarning : '' }</div>
+                    <div className="stat-title text-slate-300 font-semibold">{isStudent? 'Total payment': isInstructor? 'Total earning' : isAdmin? 'Total earning' : '' }</div>
                 </div>
 
             </div>
 
+{/* chart */}
             <div style={{ width: '80%', height: 500, margin: '50px auto' }}>
                 <ResponsiveContainer>
                     <ComposedChart

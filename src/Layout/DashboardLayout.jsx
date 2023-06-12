@@ -13,11 +13,11 @@ const DashboardLayout = () => {
     const { user } = UseAuth()
 
     if (user?.email && isRoleLoading) {
-        return <div className="h-screen flex items-center justify-center bg-[#063a92]">
+        return <div className="h-screen flex items-center justify-center ">
             <ThreeCircles
                 height="100"
                 width="100"
-                color="#02066f"
+                color="#e74c3c"
                 wrapperStyle={{}}
                 wrapperClass=""
                 visible={true}
@@ -79,14 +79,14 @@ const DashboardLayout = () => {
 
 
                     {/* TODO */}
-                    <div className="form-control w-52 absolute bottom-5 ">
+                    {/* <div className="form-control w-52 absolute bottom-5 ">
                         <Slide>
                             <label className="cursor-pointer label justify-center gap-2">
                                 <span className="label-text !text-white">Toogle theme</span>
                                 <input type="checkbox" className="toggle toggle-primary" />
                             </label>
                         </Slide>
-                    </div>
+                    </div> */}
 
                 </ul>
 

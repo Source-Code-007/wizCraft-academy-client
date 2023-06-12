@@ -39,7 +39,7 @@ const Testimonial = () => {
                 <ThreeCircles
                     height="80"
                     width="80"
-                    color="#02066f"
+                    color="#e74c3c"
                     wrapperStyle={{}}
                     wrapperClass=""
                     visible={true}

@@ -13,11 +13,11 @@ const InstructorRoute = ({children}) => {
     const location = useLocation()
 
     if (authLoading || isRoleLoading) {
-        return <div className="h-screen flex items-center justify-center bg-[#063a92]">
+        return <div className="h-screen flex items-center justify-center">
             <ThreeCircles
                 height="100"
                 width="100"
-                color="#02066f"
+                color="#e74c3c"
                 wrapperStyle={{}}
                 wrapperClass=""
                 visible={true}

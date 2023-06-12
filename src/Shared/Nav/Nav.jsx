@@ -8,6 +8,14 @@ import { ThreeCircles } from "react-loader-spinner";
 const Nav = () => {
     const [isTop, setIsTop] = useState(true);
     const { user, authLoading, signoutUserFunc } = UseAuth()
+    const [theme, setTheme] = useState(false)
+
+
+    //theme toggle
+    useEffect(() => {
+        document.body.style.background = theme ? ' linear-gradient(to right, #e0eafc, #cfdef3)' : 'linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% )';
+        document.body.style.color = theme ? '#000' : '#fff';
+      }, [theme]);
 
     // handleSignoutFunc
     const handleSignoutFunc = () => {
@@ -38,6 +46,9 @@ const Nav = () => {
         </>
 
     return (
+
+
+
         <nav className={`navbar px-8 bg-slate-900 transition duration-500 shadow ${isTop ? 'bg-opacity-25' : 'bg-opacity-90'} fixed z-50`}>
             <div className="navbar-start">
                 <div className="dropdown">
@@ -57,19 +68,27 @@ const Nav = () => {
                 </ul>
             </div>
             <div className="navbar-end">
+
+                <div className="form-control mx-5 bottom-5 ">
+                    <label className="cursor-pointer label justify-center gap-2">
+                        {/* <span className="label-text !text-white">Toogle theme</span> */}
+                        <input type="checkbox" className="toggle toggle-primary" onChange={(e) => setTheme(e.target.checked)} />
+                    </label>
+                </div>
+
                 {
                     authLoading ? <ThreeCircles
-                    height="55"
-                    width="55"
-                    color="#02066f"
-                    wrapperStyle={{}}
-                    wrapperClass=""
-                    visible={true}
-                    ariaLabel="three-circles-rotating"
-                    outerCircleColor=""
-                    innerCircleColor=""
-                    middleCircleColor=""
-                  />: user ? <>
+                        height="55"
+                        width="55"
+                        color="#e74c3c"
+                        wrapperStyle={{}}
+                        wrapperClass=""
+                        visible={true}
+                        ariaLabel="three-circles-rotating"
+                        outerCircleColor=""
+                        innerCircleColor=""
+                        middleCircleColor=""
+                    /> : user ? <>
                         <Link><img className="h-12 w-12 rounded-full mx-2" src={user.photoURL} alt="" /></Link>
                         <button onClick={handleSignoutFunc} className='cmn-btn-two'>Signout</button>
                     </> : <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>

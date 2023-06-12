@@ -73,7 +73,7 @@ const SelectedClasses = () => {
                     <ThreeCircles
                         height="100"
                         width="100"
-                        color="#02066f"
+                        color="#e74c3c"
                         wrapperStyle={{}}
                         wrapperClass=""
                         visible={true}
