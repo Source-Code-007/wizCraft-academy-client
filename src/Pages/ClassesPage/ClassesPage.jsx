@@ -84,26 +84,30 @@ const ClassesPage = () => {
         }
         return isSelectedClass
     }
+    if ((classesIsLoading || selectedClassesIsLoading || (user?.email && isRoleLoading))) {
+        return <div className="h-screen flex items-center justify-center">
+            <ThreeCircles
+                height="100"
+                width="100"
+                color="#e74c3c"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor=""
+                middleCircleColor=""
+            /> </div>
+    }
 
     return (
         <div className='min-h-screen'>
+            <h2 className="font-bold text-3xl text-center pt-28 mb-10">Enroll in Magical Classes</h2>
             {
-                (classesIsLoading || selectedClassesIsLoading || (user?.email && isRoleLoading)) ? <div className="h-screen flex items-center justify-center">
-                    <ThreeCircles
-                        height="100"
-                        width="100"
-                        color="#e74c3c"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                        ariaLabel="three-circles-rotating"
-                        outerCircleColor=""
-                        innerCircleColor=""
-                        middleCircleColor=""
-                    /> </div>
-                    : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 md:px-5'>
+                !classes.length ? <div className="h-[70vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no classes right now.!</h2></div>
+                    : <div className='my-container mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 md:px-5'>
                         {
-                            classes.map((classP, ind) => {
+                            classes?.map((classP, ind) => {
                                 const { _id, classImg, className, instructorName, availableSeats, price } = classP
 
                                 return <div key={ind} className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
@@ -111,7 +115,7 @@ const ClassesPage = () => {
                                     <div className="card-body font-semibold text-lg relative !pt-10">
                                         <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
                                         <p>Instructor name: {instructorName}</p>
-                                        <p className={`${!availableSeats? 'text-red-500' : ''}`}>Available seats: {availableSeats}</p>
+                                        <p className={`${!availableSeats ? 'text-red-500' : ''}`}>Available seats: {availableSeats}</p>
                                         <p>price: ${price}</p>
 
                                         <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))}

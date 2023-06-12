@@ -34,7 +34,7 @@ const EnrolledClasses = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : !enrolledClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There is no enrolled classes!</h2></div>
+                    : !enrolledClasses.length ? <div className="h-screen flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no enrolled classes!</h2></div>
                     : <div className='my-container py-28 px-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5'>
                         {
                             enrolledClasses.map((classP, ind) => {

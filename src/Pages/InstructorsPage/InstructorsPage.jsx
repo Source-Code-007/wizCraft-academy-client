@@ -13,23 +13,29 @@ const InstructorsPage = () => {
             .catch(e => console.log(e.message))
     }, [axiosSecure])
 
+    if(isLoading){
+        return  <div className="h-screen flex items-center justify-center">
+        <ThreeCircles
+            height="100"
+            width="100"
+            color="#e74c3c"
+            wrapperStyle={{}}
+            wrapperClass=""
+            visible={true}
+            ariaLabel="three-circles-rotating"
+            outerCircleColor=""
+            innerCircleColor=""
+            middleCircleColor=""
+        /> </div>
+    }
+
     return (
         <div className='min-h-screen'>
+            <h2 className="font-bold text-3xl text-center pt-28 mb-10">Our Expert Instructors</h2>
+
             {
-                isLoading ? <div className="h-screen flex items-center justify-center">
-                    <ThreeCircles
-                        height="100"
-                        width="100"
-                        color="#e74c3c"
-                        wrapperStyle={{}}
-                        wrapperClass=""
-                        visible={true}
-                        ariaLabel="three-circles-rotating"
-                        outerCircleColor=""
-                        innerCircleColor=""
-                        middleCircleColor=""
-                    /> </div>
-                    : <div className='my-container py-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
+                !instructors.length? <div className="h-[70vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no instructors right now.!</h2></div> 
+                : <div className='my-container pb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
                         {
                             instructors.map((instructor, ind) => {
                                 const { _id, name, photo, email, date, enrolledStudent } = instructor

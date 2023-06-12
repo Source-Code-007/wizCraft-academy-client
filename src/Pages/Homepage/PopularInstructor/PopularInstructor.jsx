@@ -8,7 +8,7 @@ import { Fade } from "react-awesome-reveal";
 const PopularInstructor = () => {
 
     const { axiosSecure } = UseAxiosSecure()
-    const [PopularInstructors, setPopularInstructors] = useState('')
+    const [PopularInstructors, setPopularInstructors] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -32,8 +32,9 @@ const PopularInstructor = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
+                    : !PopularInstructors.length? <div className="h-[80vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no popular instructors right now!</h2></div> 
                     : <div className='my-container py-28 '>
-                        <CommonSectionTitle title={'Popular instructor'} subtitle={'Most wanted instructor!'}></CommonSectionTitle>
+                        <CommonSectionTitle title={'Popular instructors'} subtitle={'Most wanted instructor!'}></CommonSectionTitle>
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:px-5">
                             {
                                 PopularInstructors.map((instructor, ind) => {

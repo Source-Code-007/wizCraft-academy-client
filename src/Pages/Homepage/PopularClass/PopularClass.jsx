@@ -8,7 +8,7 @@ import { Fade } from "react-awesome-reveal";
 
 const PopularClass = () => {
     const { axiosSecure } = UseAxiosSecure()
-    const [PopularClasses, setPopularClasses] = useState('')
+    const [PopularClasses, setPopularClasses] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -16,10 +16,12 @@ const PopularClass = () => {
             .then(res => { setPopularClasses(res.data); setIsLoading(false) })
     }, [axiosSecure])
 
+    
+
     return (
         <div className='min-h-screen'>
             {
-                isLoading ? <div className="h-screen flex items-center justify-center">
+                isLoading ? <div className="h-[80vh] flex items-center justify-center">
                     <ThreeCircles
                         height="100"
                         width="100"
@@ -32,8 +34,9 @@ const PopularClass = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> </div>
-                    : <div className='my-container py-28 '>
-                        <CommonSectionTitle title={'Popular Class'} subtitle={'Most wanted magic classes!'}></CommonSectionTitle>
+                    : !PopularClasses.length? <div className="h-[80vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no popular classes right now!</h2></div> 
+                    :<div className='my-container py-28 '>
+                        <CommonSectionTitle title={'Popular Classes'} subtitle={'Most wanted magic classes!'}></CommonSectionTitle>
                         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:px-5">
                             {
                                 PopularClasses.map((classP, ind) => {
