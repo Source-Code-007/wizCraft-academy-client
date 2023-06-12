@@ -13,7 +13,7 @@ const Nav = () => {
 
     //theme toggle
     useEffect(() => {
-        document.body.style.background = theme ? ' linear-gradient(to right, #e0eafc, #cfdef3)' : 'linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% )';
+        document.body.style.background = theme ? 'linear-gradient(to right, #e0eafc, #cfdef3)' : 'linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% )';
         document.body.style.color = theme ? '#000' : '#fff';
       }, [theme]);
 

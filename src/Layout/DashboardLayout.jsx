@@ -7,6 +7,7 @@ import { FaChalkboardTeacher, FaHome, FaRegWindowRestore, FaSearchPlus, FaUniver
 import UseAuth from "../Hook/UseAuth";
 import { Flip, JackInTheBox, Slide, Zoom } from "react-awesome-reveal";
 import DashboardActiveLink from "../HelpingComponent/DashboardActiveLink";
+import DynamicTitle from "../HelpingComponent/DynamicTitle";
 
 const DashboardLayout = () => {
     const [isRole, isRoleLoading] = UseRole()
@@ -37,7 +38,9 @@ const DashboardLayout = () => {
             <div className="drawer-content lg:ml-80">
                 {/* Page content here */}
                 <label htmlFor="my-drawer-2" className="cmn-btn-one fixed top-2 right-2 drawer-button lg:hidden z-50">Open drawer</label>
-                <Outlet></Outlet>
+                <DynamicTitle>
+                    <Outlet></Outlet>
+                </DynamicTitle>
 
             </div>
             <div className="drawer-side ">
