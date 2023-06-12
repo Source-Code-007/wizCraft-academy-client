@@ -44,8 +44,8 @@ const PopularInstructor = () => {
                                             <figure className='shadow'><img src={photo} alt={name} className='h-80 w-full rounded-t' /></figure>
                                             <div className="card-body font-semibold text-lg relative !pt-10">
                                                 <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{name}</h2>
-                                                <p>price: {email}</p>
-                                                <p>Instructor name: {new Date(date).toLocaleTimeString()}</p>
+                                                <p>Email: {email}</p>
+                                                <p>Joining date: {new Date(date).toLocaleDateString()}</p>
                                                 <p>Total student: {enrolledStudent}</p>
 
                                             </div>
