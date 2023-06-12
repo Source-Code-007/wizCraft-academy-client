@@ -47,7 +47,7 @@ const PopularInstructor = () => {
                                                 <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{name}</h2>
                                                 <p>Email: {email}</p>
                                                 <p>Joining date: {new Date(date).toLocaleDateString()}</p>
-                                                <p>Total student: {enrolledStudent}</p>
+                                                <p>Total students: {enrolledStudent}</p>
 
                                             </div>
                                         </div>
