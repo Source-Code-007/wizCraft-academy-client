@@ -5,7 +5,7 @@ const DynamicTitle = ({children}) => {
     const location = useLocation()
     useEffect(()=>{
         const pathName = location.pathname.split('/')[1]
-        window.document.title = `Edutainment Toys${pathName && ` | ${pathName}`}`
+        window.document.title = `WizCraft Academy ${pathName && ` | ${pathName}`}`
     }, [location])
     return children
 
