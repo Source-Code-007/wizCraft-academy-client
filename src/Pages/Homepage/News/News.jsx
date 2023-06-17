@@ -4,8 +4,11 @@ import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { ThreeCircles } from "react-loader-spinner";
 import { Fade } from "react-awesome-reveal";
+import { FaComment, FaUser } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const News = () => {
+    const navigate = useNavigate()
     const { axiosSecure } = UseAxiosSecure()
 
     const { isLoading, data: allNews, error, refetching } = useQuery(
@@ -40,18 +43,19 @@ const News = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:px-5">
                                 {
                                     allNews.map((classP, ind) => {
-                                        const { _id, authorName, authorRole, authorImage, img, banner, newsTitle, newsParagraph, newsPublishedDate } = classP
+                                        const { _id, authorName, authorRole, authorImage, img, banner, newsTitle, newsParagraph, comments, newsPublishedDate } = classP
 
                                         return <Fade key={ind}>
                                             <div className={`card card-compact shadow-xl text-slate-200 overflow-hidden cmn-gradient-one`}>
-                                                <figure className='shadow'><img src={img} alt={newsTitle} className='h-80 w-full rounded-t' /></figure>
-                                                <div className="card-body font-semibold text-lg relative !pt-10">
-                                                    <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{newsTitle}</h2>
-                                                    <p>Instructor name: {authorName}</p>
-                                                    <p>News title: {newsTitle}</p>
-                                                    <p>Author role: {authorRole}</p>
-                                                    <p>Published date {newsPublishedDate}</p>
-
+                                                <div className="relative group overflow-hidden">
+                                                    <img src={img} alt={newsTitle} className="h-80 w-full rounded-t group-hover:scale-105 transition duration-500 rounded" />
+                                                    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"></div>
+                                                </div>
+                                                <div className="card-body text-lg relative min-h-[220px]">
+                                                <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{new Date(newsPublishedDate).toLocaleDateString("en-US", { day: "numeric", month: "short", year: "numeric" })}</h2>
+                                                    <p className="flex gap-3 items-center text-slate-300"><FaUser className="text-[#e74c3c]"></FaUser> By {authorName} / {authorRole} </p>
+                                                    <h2 className="text-2xl font-bold">{newsTitle}</h2>
+                                                    <button onClick={()=>navigate(`/news/${_id}`)} className="cmn-btn-two w-fit">View News</button>
                                                 </div>
                                             </div>
                                         </Fade>
