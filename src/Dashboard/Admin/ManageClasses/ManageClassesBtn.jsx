@@ -6,7 +6,7 @@ const ManageClassesBtn = ({ id, status, refetch }) => {
 
     // handle Status Func
     const handleStatusFunc = (id, status) => {
-        axios.patch(`https://wizcraft-academy-server.vercel.app/admin/class-status-manage/${id}`, { status })
+        axios.patch(`http://localhost:3000/admin/class-status-manage/${id}`, { status })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
 

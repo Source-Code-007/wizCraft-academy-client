@@ -60,7 +60,7 @@ const Signin = () => {
 
             // user stored in database 
             const user = { name: currUser.displayName, photo: currUser.photoURL, email: currUser.email, date: new Date(), role: 'student' }
-            axios.post('https://wizcraft-academy-server.vercel.app/users', { user })
+            axios.post('http://localhost:3000/users', { user })
                 .then(res => {
                     setUser(currUser)
                     setSuccess('user signin by google')
@@ -85,7 +85,7 @@ const Signin = () => {
             const currUser = res.user
             // user stored in database 
             const user = { name: currUser.displayName, photo: currUser.photoURL, email: currUser.email, date: new Date(), role: 'student' }
-            axios.post('https://wizcraft-academy-server.vercel.app/users', { user })
+            axios.post('http://localhost:3000/users', { user })
                 .then(res => {
                     setUser(currUser)
                     setSuccess('user signin by github!')
