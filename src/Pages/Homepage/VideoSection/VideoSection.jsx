@@ -10,7 +10,7 @@ const VideoSection = () => {
                     <h2 className='text-xl md:text-3xl lg:text-4xl xl:text-5xl font-bold !leading-normal'>Learn from Expert Magicians and Develop Your Magical Skills</h2>
                 </div>
                 <div className='text-right col-span-4'>
-                    <button className='bg-[#e74c3c] text-white shadow-inner rounded-full inline-block p-12'><FaPlay></FaPlay></button>
+                    <button className='bg-[#e74c3c] text-white shadow-inner shadow-white text-3xl rounded-full inline-block p-12'><FaPlay></FaPlay></button>
                 </div>
             </div>
         </div>

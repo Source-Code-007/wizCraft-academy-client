@@ -1,5 +1,6 @@
 import GoToTop from "../../HelpingComponent/GoToTop";
 import Banner from "./Banner/Banner";
+import Gallery from "./Gallery/Gallery";
 import Introduction from "./Introduction.jsx/Introduction";
 import PopularClass from "./PopularClass/PopularClass";
 import PopularInstructor from "./PopularInstructor/PopularInstructor";
@@ -14,6 +15,7 @@ const Homepage = () => {
                 <PopularClass></PopularClass>
                 <PopularInstructor></PopularInstructor>
                 <VideoSection></VideoSection>
+                <Gallery></Gallery>
                 <Testimonial></Testimonial>
                 <GoToTop></GoToTop>
         </>
