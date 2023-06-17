@@ -5,7 +5,7 @@ const Introduction = () => {
     return (
         <div className='min-h-screen my-container py-12 grid grid-cols-2 items-center justify-center gap-12'>
             <div>
-                <img className='bg-slate-800 bg-blend-overlay' src={introductionImg} alt="" />
+                <img className='bg-slate-800 bg-blend-overlay rounded hover:scale-105 transition duration-500' src={introductionImg} alt="" />
             </div>
             <div className='space-y-6'>
                 <p className='text-lg text-[#e74c3c]'>Our introductions</p>

@@ -4,6 +4,7 @@ import Introduction from "./Introduction.jsx/Introduction";
 import PopularClass from "./PopularClass/PopularClass";
 import PopularInstructor from "./PopularInstructor/PopularInstructor";
 import Testimonial from "./Testimonial/Testimonial";
+import VideoSection from "./VideoSection/VideoSection";
 
 const Homepage = () => {
     return (
@@ -12,6 +13,7 @@ const Homepage = () => {
                 <Introduction></Introduction>
                 <PopularClass></PopularClass>
                 <PopularInstructor></PopularInstructor>
+                <VideoSection></VideoSection>
                 <Testimonial></Testimonial>
                 <GoToTop></GoToTop>
         </>
