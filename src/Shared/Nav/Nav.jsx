@@ -4,18 +4,12 @@ import { Link } from "react-router-dom";
 import logo from '../../assets/img/magicianLogo.png'
 import UseAuth from "../../Hook/UseAuth";
 import { ThreeCircles } from "react-loader-spinner";
+import { motion } from "framer-motion"
+
 
 const Nav = () => {
     const [isTop, setIsTop] = useState(true);
     const { user, authLoading, signoutUserFunc } = UseAuth()
-    const [theme, setTheme] = useState(false)
-
-
-    //theme toggle
-    useEffect(() => {
-        document.body.style.background = theme ? 'linear-gradient(to right, #e0eafc, #cfdef3)' : 'linear-gradient( 111.4deg,  rgba(7,7,9,1) 6.5%, rgba(27,24,113,1) 93.2% )';
-        document.body.style.color = theme ? '#000' : '#fff';
-      }, [theme]);
 
     // handleSignoutFunc
     const handleSignoutFunc = () => {
@@ -59,7 +53,19 @@ const Nav = () => {
                         {menu}
                     </ul>
                 </div>
-                <a className="text-2xl font-bold cursor-pointer text-white items-center gap-2 hidden md:flex"><img className="w-12 h-12" src={logo} alt="" /> WizCraft</a>
+
+                <motion.div
+                    variants={{
+                        hidden: { opacity: 0, x: -100 },
+                        visible: { opacity: 1, x: 0 }
+                    }}
+                    initial="hidden"
+                    whileInView="visible"
+                    transition={{ delay: .2, type: "spring", stiffness: 70 }}
+                >
+
+                    <a className="text-2xl font-bold cursor-pointer text-white items-center gap-2 hidden md:flex"><img className="w-12 h-12" src={logo} alt="" /> WizCraft</a>
+                </motion.div>
 
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -69,11 +75,6 @@ const Nav = () => {
             </div>
             <div className="navbar-end w-full md:w-3/6">
 
-                <div className="form-control mx-5 bottom-5 ">
-                    <label className="cursor-pointer label justify-center gap-2">
-                        <input type="checkbox" className="toggle toggle-primary" onChange={(e) => setTheme(e.target.checked)} />
-                    </label>
-                </div>
 
                 {
                     authLoading ? <ThreeCircles
@@ -88,9 +89,30 @@ const Nav = () => {
                         innerCircleColor=""
                         middleCircleColor=""
                     /> : user ? <>
-                        <Link><img className="h-12 w-12 rounded-full mx-2" src={user.photoURL} alt="" /></Link>
-                        <button onClick={handleSignoutFunc} className='cmn-btn-two'>Signout</button>
-                    </> : <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
+                        <motion.div
+                            variants={{
+                                hidden: { opacity: 0, x: 100 },
+                                visible: { opacity: 1, x: 0 }
+                            }}
+                            initial="hidden"
+                            whileInView="visible"
+                            transition={{ delay: .2, type: "spring", stiffness: 70 }}
+                            className="flex"
+                        >
+                            <Link><img className="h-12 w-12 rounded-full mx-2" src={user.photoURL} alt="" /></Link>
+                            <button onClick={handleSignoutFunc} className='cmn-btn-two'>Signout</button>
+                        </motion.div>
+                    </> : <motion.div
+                        variants={{
+                            hidden: { opacity: 0, x: 100 },
+                            visible: { opacity: 1, x: 0 }
+                        }}
+                        initial="hidden"
+                        whileInView="visible"
+                        transition={{ delay: .2, type: "spring", stiffness: 70 }}
+                    >
+                        <Link to={'/signin'}><button className="cmn-btn-two">Signin</button></Link>
+                    </motion.div>
                 }
             </div>
         </nav>

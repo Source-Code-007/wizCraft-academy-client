@@ -12,6 +12,7 @@ import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 import { ThreeCircles } from 'react-loader-spinner';
 import { FaQuoteLeft } from 'react-icons/fa';
 import { Fade } from 'react-awesome-reveal';
+import MyMotion from '../../../HelpingComponent/MyMotion';
 
 const Testimonial = () => {
     const { axiosSecure } = UseAxiosSecure()
@@ -49,7 +50,7 @@ const Testimonial = () => {
                     innerCircleColor=""
                     middleCircleColor=""
                 /> </div> :
-                  <Swiper
+                <Swiper
                     breakpoints={{
                         // when window width is >= 640px
                         320: {
@@ -82,16 +83,18 @@ const Testimonial = () => {
                         testimonials.map((testimonial, ind) => {
                             const { clientName, img, bannerImg, comment, date } = testimonial
                             return <SwiperSlide key={ind} className='w-full mb-10 bg-[#e74c3c]'>
-                                <div className='h-44 relative' style={{ backgroundImage: `url(${bannerImg})` }}>
+                                <MyMotion y={ind%2===0? 100 : 0}>
+                                    <div className='h-44 relative' style={{ backgroundImage: `url(${bannerImg})` }}>
 
-                                    <img src={img} className='h-24 w-24 rounded-full mx-auto absolute -bottom-5 left-0 right-0' />
-                                    <FaQuoteLeft className='absolute -bottom-5 text-6xl left-10 text-white'></FaQuoteLeft>
-                                </div>
-                                <div className='py-12 px-6 min-h-[250px] text-white space-y-2'>
-                                    <h2 className='text-3xl font-bold'>{clientName}</h2>
-                                    <h2 className='text-slate-300'>{comment}</h2>
-                                    <p className='text-white font-bold text-lg'>{new Date(date).toLocaleDateString()}</p>
-                                </div>
+                                        <img src={img} className='h-24 w-24 rounded-full mx-auto absolute -bottom-5 left-0 right-0' />
+                                        <FaQuoteLeft className='absolute -bottom-5 text-6xl left-10 text-white'></FaQuoteLeft>
+                                    </div>
+                                    <div className='py-12 px-6 min-h-[250px] text-white space-y-2'>
+                                        <h2 className='text-3xl font-bold'>{clientName}</h2>
+                                        <h2 className='text-slate-300'>{comment}</h2>
+                                        <p className='text-white font-bold text-lg'>{new Date(date).toLocaleDateString()}</p>
+                                    </div>
+                                </MyMotion>
                             </SwiperSlide>
                         })
                     }

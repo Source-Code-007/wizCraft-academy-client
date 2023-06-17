@@ -1,4 +1,3 @@
-import GoToTop from "../../HelpingComponent/GoToTop";
 import Banner from "./Banner/Banner";
 import Gallery from "./Gallery/Gallery";
 import Introduction from "./Introduction.jsx/Introduction";
@@ -19,7 +18,6 @@ const Homepage = () => {
                 <Gallery></Gallery>
                 <Testimonial></Testimonial>
                 <News></News>
-                <GoToTop></GoToTop>
         </>
     );
 };

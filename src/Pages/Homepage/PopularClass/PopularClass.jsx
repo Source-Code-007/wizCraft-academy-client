@@ -12,6 +12,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
 import UseRole from "../../../Hook/UseRole";
+import MyMotion from "../../../HelpingComponent/MyMotion";
 
 const PopularClass = () => {
     const { user, authLoading } = UseAuth()
@@ -102,7 +103,7 @@ const PopularClass = () => {
                         middleCircleColor=""
                     /> </div>
                     : !PopularClasses.length ? <div className="h-[80vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no popular classes right now!</h2></div>
-                        : <div className='my-container py-28 '>
+                        : <div className='my-container py-20 '>
                             <CommonSectionTitle title={'Popular Classes'} subtitle={'Most wanted magic classes!'}></CommonSectionTitle>
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:px-5">
                                 {
@@ -110,23 +111,25 @@ const PopularClass = () => {
                                         const { _id, classImg, className, instructorName, availableSeats, enrolledStudent, price } = classP
 
                                         return <Fade key={ind}>
-                                            <div className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
-                                                <figure className='shadow'><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
-                                                <div className="card-body font-semibold text-lg relative !pt-10">
-                                                    <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
-                                                    <p>Instructor name: {instructorName}</p>
-                                                    <p>Available seats: {availableSeats}</p>
-                                                    <p>Enrolled students: {enrolledStudent}</p>
-                                                    <p>price: ${price}</p>
+                                            <MyMotion x={ind%2===0 ? 100 : 0} y={ind%2===0 ? 0 : 100}>
+                                                <div className={`card card-compact shadow-xl text-slate-200 overflow-hidden ${availableSeats === 0 ? 'bg-red-500 bg-opacity-50' : 'cmn-gradient-one'}`}>
+                                                    <figure className='shadow'><img src={classImg} alt={className} className='h-80 w-full rounded-t' /></figure>
+                                                    <div className="card-body font-semibold text-lg relative !pt-10">
+                                                        <h2 className="card-title absolute -top-6  translate-x-5 bg-[#063a92] p-2">{className}</h2>
+                                                        <p>Instructor name: {instructorName}</p>
+                                                        <p>Available seats: {availableSeats}</p>
+                                                        <p>Enrolled students: {enrolledStudent}</p>
+                                                        <p>price: ${price}</p>
 
-                                                    <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))}
-                                                        className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))) ? '!bg-[#063a92] !text-slate-300' : ''}`}
-                                                        onClick={() => handleSelectClassFunc(classP)}>
-                                                        <FaHeart></FaHeart> {(selectedClasses?.length && isAlreadySelectedClass(_id)) ? 'Already selected' : 'select'}
-                                                    </button>
+                                                        <button disabled={availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))}
+                                                            className={`cmn-btn-two w-fit flex items-center gap-3 my-3 ${(availableSeats === 0 || isRole === 'admin' || isRole === 'instructor' || (selectedClasses?.length && isAlreadySelectedClass(_id))) ? '!bg-[#063a92] !text-slate-300' : ''}`}
+                                                            onClick={() => handleSelectClassFunc(classP)}>
+                                                            <FaHeart></FaHeart> {(selectedClasses?.length && isAlreadySelectedClass(_id)) ? 'Already selected' : 'select'}
+                                                        </button>
 
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            </MyMotion>
                                         </Fade>
                                     })
                                 }
@@ -145,7 +148,7 @@ const PopularClass = () => {
                 pauseOnHover
                 theme="light"
             />
-        </div>
+        </div >
     );
 };
 

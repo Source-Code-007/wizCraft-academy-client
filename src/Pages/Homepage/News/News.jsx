@@ -1,11 +1,12 @@
-import { useEffect } from "react";
 import CommonSectionTitle from "../../../HelpingComponent/CommonSectionTitle";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { ThreeCircles } from "react-loader-spinner";
 import { Fade } from "react-awesome-reveal";
-import { FaComment, FaUser } from "react-icons/fa";
+import {  FaUser } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion"
+
 
 const News = () => {
     const navigate = useNavigate()
@@ -43,10 +44,19 @@ const News = () => {
                             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 lg:px-5">
                                 {
                                     allNews.map((classP, ind) => {
-                                        const { _id, authorName, authorRole, authorImage, img, banner, newsTitle, newsParagraph, comments, newsPublishedDate } = classP
+                                        const { _id, authorName, authorRole, img,  newsTitle, newsPublishedDate } = classP
 
                                         return <Fade key={ind}>
-                                            <div className={`card card-compact shadow-xl text-slate-200 overflow-hidden cmn-gradient-one`}>
+                                            <motion.div
+                                             variants={{
+                                                hidden: { opacity: 0, x: ind%2===0? 100 : 0, y: ind%2===0? 0 : 100 },
+                                                visible: { opacity: 1, x: 0, y: 0 }
+                                            }}
+                                            initial="hidden"
+                                            whileInView="visible"
+                                            transition={{ delay: .2, type: "spring", stiffness: 70 }}
+                                            
+                                            className={`card card-compact shadow-xl text-slate-200 overflow-hidden cmn-gradient-one`}>
                                                 <div className="relative group overflow-hidden">
                                                     <img src={img} alt={newsTitle} className="h-80 w-full rounded-t group-hover:scale-105 transition duration-500 rounded" />
                                                     <div className="absolute top-0 left-0 w-full h-full bg-black opacity-0 transition-opacity duration-300 hover:opacity-50"></div>
@@ -57,7 +67,7 @@ const News = () => {
                                                     <h2 className="text-2xl font-bold">{newsTitle}</h2>
                                                     <button onClick={()=>navigate(`/news/${_id}`)} className="cmn-btn-two w-fit">View News</button>
                                                 </div>
-                                            </div>
+                                            </motion.div>
                                         </Fade>
                                     })
                                 }
