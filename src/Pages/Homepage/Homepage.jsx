@@ -1,4 +1,5 @@
 import Banner from "./Banner/Banner";
+import ContactUs from "./ContactUs/ContactUs";
 import Gallery from "./Gallery/Gallery";
 import Introduction from "./Introduction.jsx/Introduction";
 import News from "./News/News";
@@ -18,6 +19,7 @@ const Homepage = () => {
                 <Gallery></Gallery>
                 <Testimonial></Testimonial>
                 <News></News>
+                <ContactUs></ContactUs>
         </>
     );
 };
