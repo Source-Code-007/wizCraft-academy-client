@@ -1,6 +1,7 @@
 import { FaPlay } from 'react-icons/fa';
 import videoBg from '../../../assets/img/videoSectionBg.jpg';
 import MyMotion from '../../../HelpingComponent/MyMotion';
+import VideoModal from './VideoModal';
 
 const VideoSection = () => {
     return (
@@ -16,10 +17,11 @@ const VideoSection = () => {
                 </div>
                 <div className='text-right col-span-4'>
                     <MyMotion x={100} delay={.5}>
-                        <button className='bg-[#e74c3c] text-white shadow-inner shadow-white text-3xl rounded-full inline-block p-12'><FaPlay></FaPlay></button>
+                        <button onClick={() => window.my_modal_1.showModal()} className='bg-[#e74c3c] text-white shadow-inner shadow-white text-3xl rounded-full inline-block p-12'><FaPlay></FaPlay></button>
                     </MyMotion>
                 </div>
             </div>
+            <VideoModal></VideoModal>
         </div>
     );
 };

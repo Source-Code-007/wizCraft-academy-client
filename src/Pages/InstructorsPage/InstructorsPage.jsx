@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import UseAxiosSecure from "../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
+import { Link } from "react-router-dom";
 
 const InstructorsPage = () => {
     const { axiosSecure } = UseAxiosSecure()
@@ -13,20 +14,20 @@ const InstructorsPage = () => {
             .catch(e => console.log(e.message))
     }, [axiosSecure])
 
-    if(isLoading){
-        return  <div className="h-screen flex items-center justify-center">
-        <ThreeCircles
-            height="100"
-            width="100"
-            color="#e74c3c"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
-            ariaLabel="three-circles-rotating"
-            outerCircleColor=""
-            innerCircleColor=""
-            middleCircleColor=""
-        /> </div>
+    if (isLoading) {
+        return <div className="h-screen flex items-center justify-center">
+            <ThreeCircles
+                height="100"
+                width="100"
+                color="#e74c3c"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+                ariaLabel="three-circles-rotating"
+                outerCircleColor=""
+                innerCircleColor=""
+                middleCircleColor=""
+            /> </div>
     }
 
     return (
@@ -34,8 +35,8 @@ const InstructorsPage = () => {
             <h2 className="font-bold text-3xl text-center pt-28 mb-10">Our Expert Instructors</h2>
 
             {
-                !instructors.length? <div className="h-[70vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no instructors right now.!</h2></div> 
-                : <div className='my-container pb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
+                !instructors.length ? <div className="h-[70vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no instructors right now.!</h2></div>
+                    : <div className='my-container pb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 px-5'>
                         {
                             instructors.map((instructor, ind) => {
                                 const { _id, name, photo, email, date, enrolledStudent } = instructor
@@ -49,7 +50,9 @@ const InstructorsPage = () => {
                                         <p>Email: {email}</p>
                                         <p>Joining date: {new Date(date).toLocaleDateString()}</p>
                                         <p className={`${!enrolledStudent ? 'text-red-500' : ''}`}>Total student: {enrolledStudent}</p>
-                                        <button className="cmn-btn-two">See classes</button>
+                                        <Link to={`/instructor-classes/${name}`}>
+                                            <button className="cmn-btn-two">See classes</button>
+                                        </Link>
                                     </div>
                                 </div>
                             })

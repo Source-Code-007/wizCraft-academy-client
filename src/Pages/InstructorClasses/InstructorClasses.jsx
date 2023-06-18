@@ -110,7 +110,7 @@ const InstructorClasses = () => {
 
     return (
         <div className='min-h-screen'>
-            <h2 className="font-bold text-3xl text-center pt-28 mb-10">Magical Classes by {instructorClassesData[0]?.instructorName}</h2>
+            <h2 className="font-bold text-3xl text-center pt-28 mb-10">Magical Classes by <span className='text-[#e74c3c]'> {instructorClassesData[0]?.instructorName}</span></h2>
             {
                 !instructorClassesData.length ? <div className="h-[70vh] flex items-center justify-center"><h2 className='text-4xl text-white font-bold bg-red-500 p-3'>There are no classes right now!</h2></div>
                     : <div className='my-container mb-10 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5 md:gap-10 md:px-5'>
