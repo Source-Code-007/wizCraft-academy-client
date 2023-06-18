@@ -8,7 +8,7 @@ const InstructorsPage = () => {
     const [instructors, setInstructors] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
     useEffect(() => {
-        axiosSecure('/all-instructors')
+        axiosSecure('/get-all-instructors')
             .then(res => { setInstructors(res.data); setIsLoading(false) })
             .catch(e => console.log(e.message))
     }, [axiosSecure])

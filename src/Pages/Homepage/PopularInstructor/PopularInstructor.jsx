@@ -4,7 +4,7 @@ import CommonSectionTitle from "../../../HelpingComponent/CommonSectionTitle";
 import UseAxiosSecure from "../../../Hook/UseAxiosSecure";
 import { ThreeCircles } from "react-loader-spinner";
 import { Fade } from "react-awesome-reveal";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebook, FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion"
 
@@ -14,6 +14,7 @@ const PopularInstructor = () => {
     const { axiosSecure } = UseAxiosSecure()
     const [PopularInstructors, setPopularInstructors] = useState([])
     const [isLoading, setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         axiosSecure('/popular-instructors')
@@ -79,9 +80,11 @@ const PopularInstructor = () => {
                                                         </div>
                                                     </div>
                                                     <p className="font-normal text-slate-300">
-                                                    Jimmy is our exceptionally popular and highly sought-after instructor, who has amassed a remarkable {enrolledStudent} students since {new Date(date).toLocaleDateString()}. Don't miss the chance to connect with Jimmy by reaching out to him at {email}.
+                                                        Jimmy is our exceptionally popular and highly sought-after instructor, who has amassed a remarkable {enrolledStudent} students since {new Date(date).toLocaleDateString()}. Don't miss the chance to connect with Jimmy by reaching out to him at {email}.
                                                     </p>
-                                                    <button className="cmn-btn-two w-fit flex-end mt-3">View Classes</button>
+                                                    <Link to={`/instructor-classes/${name}`}>
+                                                        <button className="cmn-btn-two w-fit flex-end mt-3">View Classes</button>
+                                                    </Link>
                                                 </motion.div>
                                             </div>
                                         </Fade>

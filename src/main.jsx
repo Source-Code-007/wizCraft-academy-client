@@ -25,6 +25,7 @@ import PaymentHistory from './Dashboard/Student/PaymentHistory/PaymentHistory'
 import StudentRoute from './PrivateRoute/StudentRoute'
 import ErrorPage from './Pages/ErrorPage/ErrorPage'
 import SingleNews from './Pages/SingleNews/SingleNews'
+import InstructorClasses from './Pages/InstructorClasses/InstructorClasses'
 
 
 
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: '/news/:id',
         element: <SingleNews></SingleNews>
+      },
+      {
+        path: '/instructor-classes/:name',
+        element: <InstructorClasses></InstructorClasses>
       },
     ]
   },
