@@ -11,11 +11,12 @@ const Footer = () => {
             <div className='grid grid-cols-1 lg:grid-cols-12 max-w-7xl mx-10 xl:mx-auto py-24 text-white'>
                 <div className='flex justify-between col-span-3'>
                     <ul className='space-y-3'>
-                        <span className="footer-title">Events</span>
-                        <li><Link className="text-slate-300 hover:text-orange-500 transition">Magic Shows</Link></li>
-                        <li><Link className="text-slate-300 hover:text-orange-500 transition">Guest Lectures</Link></li>
-                        <li><Link className="text-slate-300 hover:text-orange-500 transition">Annual Magic</Link></li>
-                        <li><Link className="text-slate-300 hover:text-orange-500 transition">Upcoming Events</Link></li>
+                        <span className="footer-title">Important Links</span>
+                        <li><Link className="text-slate-300 hover:text-orange-500 transition" to={'/'}>Home</Link></li>
+                        <li><Link className="text-slate-300 hover:text-orange-500 transition" to={'/about-us'}>About us</Link></li>
+                        <li><Link className="text-slate-300 hover:text-orange-500 transition" to={'/instructors'}>Instructors</Link></li>
+                        <li><Link className="text-slate-300 hover:text-orange-500 transition" to={'/classes'}>Classes</Link></li>
+                        <li><Link className="text-slate-300 hover:text-orange-500 transition" to={'/services'}>Services</Link></li>
                     </ul>
                     <ul className='space-y-3'>
                         <span className="footer-title">About</span>

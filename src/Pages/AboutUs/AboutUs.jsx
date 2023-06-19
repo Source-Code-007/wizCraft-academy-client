@@ -78,8 +78,6 @@ const AboutUs = () => {
                         <Tab><button onClick={() => setActiveTab('admin')} className={`${activeTab === 'admin' ? 'cmn-btn-one' : 'cmn-btn-one-outline'}`} >Admin</button></Tab>
                     </TabList>
 
-
-
                     {
                         tabPanel.map((elem, ind) => {
                             return <TabPanel key={ind}>

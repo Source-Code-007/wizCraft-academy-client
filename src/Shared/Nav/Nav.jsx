@@ -16,6 +16,7 @@ const Nav = () => {
         signoutUserFunc().then(() => console.log('signout user')).catch(e => console.log(e.message))
     }
 
+    // for conditionally set navbar bg
     useEffect(() => {
         const handleScroll = () => {
             const scrolledToTop = window.pageYOffset < 200;
