@@ -2,10 +2,11 @@ import { Link } from "react-router-dom";
 import { FaFacebookF, FaGithub, FaTwitter } from "react-icons/fa";
 import footerBg from '../../assets/img/footerBgOne.jpg'
 import logo from '../../assets/img/magicianLogo.png'
+import MyMotion from "../../HelpingComponent/MyMotion";
 
 const Footer = () => {
     return (
-        <footer className='bg-top bg-cover bg-blend-overlay bg-slate-900' style={{ backgroundImage: `url(${footerBg})` }}>
+        <footer className='bg-center bg-cover bg-blend-overlay bg-slate-900 bg-fixed' style={{ backgroundImage: `url(${footerBg})` }}>
 
             <div className='grid grid-cols-1 lg:grid-cols-12 max-w-7xl mx-10 xl:mx-auto py-24 text-white'>
                 <div className='flex justify-between col-span-3'>
@@ -26,20 +27,23 @@ const Footer = () => {
                 </div>
 
                 <div className='col-span-6 flex justify-center items-center'>
-                    <div className='rounded-full h-64 w-64 flex flex-col justify-center items-center space-y-4 bg-[#02066f] bg-opacity-25'>
-                        <img src={logo} className="h-12 w-12 rounded-full" alt="" />
-                        <h2 className='font-bold text-2xl'>WizCraft Academy</h2>
-                        <div className='relative'>
-                            <p className='font-bold pb-2'>Established . 2018</p>
-                            <div className='h-0.5 w-10 bg-[#e74c3c] absolute top-full left-0 right-0 mx-auto'></div>
+                    <MyMotion
+                        y={-100}
+                    >
+                        <div className='rounded-full h-64 w-64 flex flex-col justify-center items-center space-y-4 bg-[#02066f] bg-opacity-25'>
+                            <img src={logo} className="h-12 w-12 rounded-full" alt="" />
+                            <h2 className='font-bold text-2xl'>WizCraft Academy</h2>
+                            <div className='relative'>
+                                <p className='font-bold pb-2'>Established . 2018</p>
+                                <div className='h-0.5 w-10 bg-[#e74c3c] absolute top-full left-0 right-0 mx-auto'></div>
+                            </div>
+                            <ul className='flex gap-2 text-xl'>
+                                <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaFacebookF></FaFacebookF> </Link> </li>
+                                <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaTwitter></FaTwitter> </Link> </li>
+                                <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaGithub></FaGithub> </Link> </li>
+                            </ul>
                         </div>
-                        <ul className='flex gap-2 text-xl'>
-                            <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaFacebookF></FaFacebookF> </Link> </li>
-                            <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaTwitter></FaTwitter> </Link> </li>
-                            <li> <Link className='rounded-full h-10 w-10 border border-[#e74c3c] flex justify-center items-center'> <FaGithub></FaGithub> </Link> </li>
-                        </ul>
-
-                    </div>
+                    </MyMotion>
                 </div>
 
                 <div className='col-span-3'>
