@@ -1,8 +1,8 @@
 import { FaAffiliatetheme, FaAirFreshener, FaMagic, FaPastafarianism, FaPhoenixFramework, FaStudiovinari } from 'react-icons/fa';
-import servicesBg from '../../assets/img/singleNewsBanner.jpg'
 import counterBg from '../../assets/img/videoSectionBg.jpg'
 import CountUp from 'react-countup';
 import MyMotion from '../../HelpingComponent/MyMotion';
+import CommonCompoBanner from '../../HelpingComponent/CommonCompoBanner';
 
 const ServicesPage = () => {
 
@@ -40,14 +40,11 @@ const ServicesPage = () => {
     ];
 
     return (
-        <div>
-            <div className="h-[60vh] bg-cover bg-center bg-slate-800 bg-blend-overlay flex items-center  space-y-4" style={{ backgroundImage: `url(${servicesBg})` }}>
-                <div className="space-y-3 w-5/6 xl:w-4/6 mx-auto text-center">
-                    <h2 className="font-extrabold text-2xl md:text-3xl xl:text-5xl !leading-relaxed">Services</h2>
-                    <p>Unlock the Magic: Discover Our Enchanting Services</p>
-                </div>
-            </div>
+        <>
+            {/* Banner */}
+            <CommonCompoBanner title={'Services'} subtitle={'Unlock the Magic: Discover Our Enchanting Services'}></CommonCompoBanner>
 
+            {/* Services */}
             <div className='my-container py-12 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
                 {
                     services.map((service, ind) => {
@@ -61,6 +58,7 @@ const ServicesPage = () => {
                 }
             </div>
 
+            {/* Counter Up */}
             <div className='bg-center bg-cover bg-fixed bg-slate-800 bg-blend-overlay py-36 my-20' style={{ backgroundImage: `url(${counterBg})` }}>
                 <div className='my-container grid grid-cols-1 lg:grid-cols-3 gap-5'>
                     <MyMotion x={150}>
@@ -82,6 +80,7 @@ const ServicesPage = () => {
                 </div>
             </div>
 
+            {/* FAQ */}
             <div className='my-container py-16 space-y-4'>
                 <h2 className='font-bold text-3xl lg:text-4xl mb-8'>How can I help you?</h2>
 
@@ -108,7 +107,7 @@ const ServicesPage = () => {
                 <div className="collapse collapse-arrow bg-slate-900 bg-opacity-70">
                     <input type="radio" name="my-accordion-2" />
                     <div className="collapse-title text-xl font-medium">
-                    What activities are included in the summer camp curriculum?
+                        What activities are included in the summer camp curriculum?
                     </div>
                     <div className="collapse-content text-slate-300">
                         <p >Our summer camp offers a wide range of activities including magic workshops, performances, outdoor adventures, team-building exercises, and more</p>
@@ -117,7 +116,7 @@ const ServicesPage = () => {
 
             </div>
 
-        </div>
+        </>
     );
 };
 

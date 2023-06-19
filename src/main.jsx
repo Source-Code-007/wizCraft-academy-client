@@ -27,6 +27,7 @@ import ErrorPage from './Pages/ErrorPage/ErrorPage'
 import SingleNews from './Pages/SingleNews/SingleNews'
 import InstructorClassesPage from './Pages/InstructorClassesPage/InstructorClassesPage'
 import ServicesPage from './Pages/ServicesPage/ServicesPage'
+import AboutUs from './Pages/AboutUs/AboutUs'
 
 
 
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
       {
         path: '/services',
         element: <ServicesPage></ServicesPage>
+      },
+      {
+        path: '/about-us',
+        element: <AboutUs></AboutUs>
       },
     ]
   },

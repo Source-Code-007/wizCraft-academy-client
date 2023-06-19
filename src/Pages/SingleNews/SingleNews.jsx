@@ -1,11 +1,11 @@
+/* eslint-disable no-unused-vars */
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../Hook/UseAxiosSecure";
 import { useNavigate, useParams } from "react-router-dom";
 import { ThreeCircles } from "react-loader-spinner";
 
-import singleNewsBanner from "../../assets/img/singleNewsBanner.jpg";
 import { FaAngleRight, FaComment, FaUser } from "react-icons/fa";
-import { useState } from "react";
+import CommonCompoBanner from "../../HelpingComponent/CommonCompoBanner";
 
 
 // TODO: issue on recent news , no rerender
@@ -57,12 +57,8 @@ const SingleNews = () => {
 
     return (
         <div>
-            <div className="h-[60vh] bg-cover bg-center bg-slate-800 bg-blend-overlay flex items-center justify-center" style={{ backgroundImage: `url(${singleNewsBanner})` }}>
-                <div className="space-y-3 w-5/6 xl:w-4/6 ">
-                    <p>Home / {singleNews?.newsTitle}</p>
-                    <h2 className="font-extrabold text-2xl md:text-3xl xl:text-5xl !leading-relaxed">{singleNews?.newsTitle}</h2>
-                </div>
-            </div>
+            {/* Banner */}
+            <CommonCompoBanner title={`Home / ${singleNews?.newsTitle}`} subtitle={singleNews?.newsTitle}></CommonCompoBanner>
 
             <div className="grid grid-cols-12  gap-8 my-container py-14">
 
