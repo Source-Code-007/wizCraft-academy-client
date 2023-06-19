@@ -1,17 +1,18 @@
 /* eslint-disable no-unused-vars */
 import bgImg from '../../../assets/img/signinBg.jpg'
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 import { ThreeCircles } from 'react-loader-spinner';
 import { Slide } from 'react-awesome-reveal';
 import { ToastContainer, toast } from 'react-toastify';
+import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 
 const ManageUsers = () => {
+    const {axiosSecure} = UseAxiosSecure()
 
     const { data: allUsers, refetch, error, isLoading } = useQuery({
         queryKey: ['allUsers'],
         queryFn: async () => {
-            const res = await axios.get('http://localhost:3000/all-users')
+            const res = await axiosSecure.get('/all-users')
             return res.data
         }
     })
@@ -19,7 +20,7 @@ const ManageUsers = () => {
 
     // handle make role by admin
     const handleMakeRoleFunc = (id, updatedRole) => {
-        axios.patch(`http://localhost:3000/admin/make-role/${id}`, { updatedRole })
+        axiosSecure.patch(`/admin/make-role/${id}`, { updatedRole })
             .then(res => {
                 if (res.data.modifiedCount) {
                     toast.success('Role Updated!', {

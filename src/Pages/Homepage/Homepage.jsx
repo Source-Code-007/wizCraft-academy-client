@@ -9,17 +9,19 @@ import Testimonial from "./Testimonial/Testimonial";
 import VideoSection from "./VideoSection/VideoSection";
 
 const Homepage = () => {
+
+
     return (
         <>
-                <Banner></Banner>
-                <Introduction></Introduction>
-                <PopularClass></PopularClass>
-                <PopularInstructor></PopularInstructor>
-                <VideoSection></VideoSection>
-                <Gallery></Gallery>
-                <Testimonial></Testimonial>
-                <News></News>
-                <ContactUs></ContactUs>
+            <Banner></Banner>
+            <Introduction></Introduction>
+            <PopularClass></PopularClass>
+            <PopularInstructor></PopularInstructor>
+            <VideoSection></VideoSection>
+            <Gallery></Gallery>
+            <Testimonial></Testimonial>
+            <News></News>
+            <ContactUs></ContactUs>
         </>
     );
 };

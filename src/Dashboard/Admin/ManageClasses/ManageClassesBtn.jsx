@@ -1,12 +1,13 @@
 /* eslint-disable react/prop-types */
-import axios from 'axios';
 import { toast } from 'react-toastify';
+import UseAxiosSecure from '../../../Hook/UseAxiosSecure';
 
 const ManageClassesBtn = ({ id, status, refetch }) => {
+    const {axiosSecure} = UseAxiosSecure()
 
     // handle Status Func
     const handleStatusFunc = (id, status) => {
-        axios.patch(`http://localhost:3000/admin/class-status-manage/${id}`, { status })
+        axiosSecure.patch(`/admin/class-status-manage/${id}`, { status })
             .then(res => {
                 if (res.data.modifiedCount > 0) {
 

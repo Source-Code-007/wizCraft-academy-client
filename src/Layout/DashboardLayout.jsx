@@ -49,7 +49,7 @@ const DashboardLayout = () => {
             <div className="drawer-side ">
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
 
-                <ul className="menu p-4 w-80 h-full bg-[#063a92] text-slate-200 font-bold space-y-3 text-lg fixed">
+                <ul className="menu p-4 w-80 h-full bg-[#46458c] text-slate-200 font-bold space-y-3 text-lg fixed">
                     {/* Sidebar content here */}
                     <li>
                         <Link to={'/'} className="flex gap-2 justify-center">
