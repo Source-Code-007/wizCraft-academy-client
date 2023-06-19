@@ -47,6 +47,7 @@ const ServicesPage = () => {
                     <p>Unlock the Magic: Discover Our Enchanting Services</p>
                 </div>
             </div>
+
             <div className='my-container py-12 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6'>
                 {
                     services.map((service, ind) => {
@@ -79,6 +80,41 @@ const ServicesPage = () => {
                         </div>
                     </MyMotion>
                 </div>
+            </div>
+
+            <div className='my-container py-16 space-y-4'>
+                <h2 className='font-bold text-3xl lg:text-4xl mb-8'>How can I help you?</h2>
+
+                <div className="collapse collapse-arrow transition duration-500 bg-slate-900 bg-opacity-70">
+                    <input type="radio" name="my-accordion-2" />
+                    <div className="collapse-title text-xl font-medium">
+                        What age groups are eligible to participate in the summer camp?
+                    </div>
+                    <div className="collapse-content text-slate-300">
+                        <p>Our  summer camp is open to children and teenagers aged 7 to 22.</p>
+                    </div>
+                </div>
+
+                <div className="collapse collapse-arrow bg-slate-900 bg-opacity-70">
+                    <input type="radio" name="my-accordion-2" />
+                    <div className="collapse-title text-xl font-medium">
+                        What is the duration of the summer camp program?
+                    </div>
+                    <div className="collapse-content text-slate-300">
+                        <p >The summer camp program runs for four weeks, from 07 march 2023 to 05 apr 2023.</p>
+                    </div>
+                </div>
+
+                <div className="collapse collapse-arrow bg-slate-900 bg-opacity-70">
+                    <input type="radio" name="my-accordion-2" />
+                    <div className="collapse-title text-xl font-medium">
+                    What activities are included in the summer camp curriculum?
+                    </div>
+                    <div className="collapse-content text-slate-300">
+                        <p >Our summer camp offers a wide range of activities including magic workshops, performances, outdoor adventures, team-building exercises, and more</p>
+                    </div>
+                </div>
+
             </div>
 
         </div>
