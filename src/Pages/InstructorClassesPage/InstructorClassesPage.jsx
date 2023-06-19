@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 // TODO: After reload issue
 
-const InstructorClasses = () => {
+const InstructorClassesPage = () => {
     const { user } = UseAuth()
     const [isRole, isRoleLoading] = UseRole()
     const { name } = useParams()
@@ -154,4 +154,4 @@ const InstructorClasses = () => {
     )
 }
 
-export default InstructorClasses;
+export default InstructorClassesPage;

@@ -4,7 +4,7 @@ import contactUsBg from '../../../assets/img/contact-us-bg.svg'
 
 const ContactUs = () => {
     return (
-        <div className='my-container my-16'>
+        <div className='my-container my-28'>
             <CommonSectionTitle title={'Get in touch'} subtitle={'Contact us for help, questions or to join the team!'}></CommonSectionTitle>
             <div className='grid grid-cols-12 gap-5'>
                 <div className='col-span-12 lg:col-span-6 xl:col-span-4 bg-cover  rounded p-8 space-y-16' style={{ backgroundImage: `url(${contactUsBg})` }}>
