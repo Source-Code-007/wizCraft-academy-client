@@ -86,7 +86,7 @@ const Signup = () => {
 
     return (
         <div className="bg-cover bg-center bg-slate-800 bg-blend-overlay" style={{ backgroundImage: `url(${bgImg})` }}>
-            <div className='min-h-screen grid grid-col-1 md:grid-cols-2 gap-4 xl:gap-8 items-center my-container'>
+            <div className='min-h-screen grid grid-col-1 lg:grid-cols-2 gap-4 xl:gap-8 items-center my-container'>
                 <form onSubmit={handleSubmit(handleSignupFunc)} className='space-y-3 p-10 bg-slate-900 bg-opacity-75 shadow rounded'>
                     <h2 className='font-bold text-3xl text-white'>Please Register</h2>
                     <div>
@@ -143,7 +143,7 @@ const Signup = () => {
 
                 </form>
 
-                <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full' />
+                <Lottie animationData={success ? successRegistrationLottie : signupLottie} loop={true} className='h-full w-full hidden lg:block' />
             </div>
         </div>
     );

@@ -158,7 +158,7 @@ const Signin = () => {
 
                 </div>
 
-                <Lottie animationData={signinLottie} loop={true} className='h-full w-full' />
+                <Lottie animationData={signinLottie} loop={true} className='h-full w-full hidden md:block' />
             </div>
         </div>
     );
